@@ -225,7 +225,7 @@ module.exports = options => {
     entry,
     output,
     module: {
-      preLoaders: [].concat(loadersByExtension(preLoaders)),
+      // preLoaders: [].concat(loadersByExtension(preLoaders)),
       loaders: [].concat(loadersByExtension(loaders)).concat(loadersByExtension(stylesheetLoaders)).concat(additionalLoaders),
       noParse: []
     },
