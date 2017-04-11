@@ -1,6 +1,9 @@
+import React from "react";
+import Modal from "react-modal";
+
 export const modalStyles = {
-  overlay : {
-    backgroundColor   : "rgba(238, 238, 238, .98)"
+  overlay: {
+    backgroundColor: "rgba(238, 238, 238, 0.98)"
   },
   content: {
     backgroundColor: "transparent",
@@ -16,3 +19,5 @@ export const modalStyles = {
     padding: "0"
   }
 };
+
+export default props => <Modal style={modalStyles} {...props} />;

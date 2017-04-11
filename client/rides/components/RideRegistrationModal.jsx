@@ -1,7 +1,6 @@
 import React, { PropTypes } from "react";
-import Modal from "react-modal";
 
-import { modalStyles } from "techbikers/utils/modal";
+import Modal from "techbikers/utils/Modal";
 import requireAuthentication from "techbikers/auth/containers/requireAuthentication";
 
 import SetupFundraising from "techbikers/fundraisers/containers/SetupFundraising";
@@ -62,7 +61,7 @@ RideRegistrationModalContents.propTypes = {
 };
 
 const RideRegistrationModal = ({ isOpen = false, registrationStatus, hasFundraiser, onRequestClose }) => (
-  <Modal style={modalStyles} isOpen={isOpen} onRequestClose={() => onRequestClose()}>
+  <Modal isOpen={isOpen} onRequestClose={() => onRequestClose()}>
     <RideRegistrationModalContents status={registrationStatus} hasFundraiser={hasFundraiser}/>
   </Modal>
 );

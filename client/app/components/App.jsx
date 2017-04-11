@@ -1,9 +1,8 @@
 import React, { PropTypes } from "react";
 import { IntlProvider } from "react-intl";
-import Modal from "react-modal";
 
 import { SEGMENT_TRACKING_KEY } from "techbikers/config";
-import { modalStyles } from "techbikers/utils/modal";
+import Modal from "techbikers/utils/Modal";
 
 import AnalyticsLoader from "techbikers/app/components/AnalyticsLoader";
 import Header from "techbikers/app/components/Header";
@@ -20,7 +19,7 @@ const App = ({ children, pageMeta, modalChildren }) => (
       {children}
       <Footer />
       <NotificationArea />
-      <Modal isOpen={modalChildren !== null} style={modalStyles}>
+      <Modal isOpen={modalChildren !== null}>
         {modalChildren}
       </Modal>
     </div>

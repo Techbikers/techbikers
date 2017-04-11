@@ -1,8 +1,7 @@
 import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
-import Modal from "react-modal";
 
-import { modalStyles } from "techbikers/utils/modal";
+import Modal from "techbikers/utils/Modal";
 import { authenticateAs, closeAuthModal } from "techbikers/auth/actions";
 import LoginForm from "techbikers/auth/components/LoginForm";
 
@@ -27,7 +26,7 @@ export default class LoginModal extends Component {
     const { authModalOpen, ...props } = this.props;
 
     return (
-      <Modal style={modalStyles} isOpen={authModalOpen} onRequestClose={() => this.props.closeAuthModal()} {...props}>
+      <Modal isOpen={authModalOpen} onRequestClose={() => this.props.closeAuthModal()} {...props}>
         <section id="login">
           <header>
             <h1>Login</h1>
