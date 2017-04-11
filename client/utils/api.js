@@ -1,6 +1,6 @@
 import { normalize } from "normalizr";
 import { call, select, put } from "redux-saga/effects";
-import { camelizeKeys } from "humps";
+import { camelizeKeys, decamelizeKeys } from "humps";
 import fetch from "isomorphic-fetch";
 import { createAction } from "redux-actions";
 
@@ -58,4 +58,13 @@ export function* callApi(endpoint, fetchOptions = {}, schema) {
     yield put(request.failure(error));
     return { error };
   }
+}
+
+export function* apiPut(endpoint, payload, schema) {
+  const fetchOptions = {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(decamelizeKeys(payload))
+  };
+  return yield call(callApi, endpoint, fetchOptions, schema);
 }
