@@ -1,6 +1,6 @@
 import React, { PropTypes } from "react";
 
-import Modal from "techbikers/utils/Modal";
+import Modal from "techbikers/components/Modal";
 import requireAuthentication from "techbikers/auth/containers/requireAuthentication";
 
 import SetupFundraising from "techbikers/fundraisers/containers/SetupFundraising";

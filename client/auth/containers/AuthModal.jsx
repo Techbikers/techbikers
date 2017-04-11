@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
 
-import Modal from "techbikers/utils/Modal";
+import Modal from "techbikers/components/Modal";
 import { authenticateAs, closeAuthModal } from "techbikers/auth/actions";
 import LoginForm from "techbikers/auth/components/LoginForm";
 

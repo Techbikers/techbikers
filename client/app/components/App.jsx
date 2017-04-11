@@ -2,8 +2,8 @@ import React, { PropTypes } from "react";
 import { IntlProvider } from "react-intl";
 
 import { SEGMENT_TRACKING_KEY } from "techbikers/config";
-import Modal from "techbikers/utils/Modal";
 
+import Modal from "techbikers/components/Modal";
 import AnalyticsLoader from "techbikers/app/components/AnalyticsLoader";
 import Header from "techbikers/app/components/Header";
 import Footer from "techbikers/app/components/Footer";
