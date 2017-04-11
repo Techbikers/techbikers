@@ -36,50 +36,6 @@
 .offset4 { margin-left: ($columnWidth * 4) + ($gridGutter * 5); }
 .offset5 { margin-left: ($columnWidth * 5) + ($gridGutter * 6); }
 
-
-// Header specifics
-[role="header"] {
-  .topNavigation {
-    position: relative;
-    text-align: left;
-    height: 140px;
-    overflow: hidden;
-
-    a {
-      display: inline-block;
-      @include transition(color .3s linear);
-      margin: 0 20px 0 0;
-      vertical-align: middle;
-      height: 140px;
-      line-height: 140px;
-
-      color: #666;
-      text-decoration: none;
-
-      &:nth-child(2):hover {
-        color: #eb1c24;
-      }
-      &:nth-child(3):hover {
-        color: #4494c7;
-      }
-      &:nth-child(4):hover {
-        color: #625398;
-      }
-      &:nth-child(5):hover {
-        color: #76c15a;
-      }
-
-      &.donate {
-        float: right;
-        color: white;
-        margin: 42px 0 20px 42px;
-        height: 52px;
-        line-height: 30px;
-      }
-    }
-  }
-}
-
 // Footer specifics
 [role="footer"] {
   background: #392C3A;
