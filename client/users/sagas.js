@@ -4,7 +4,10 @@ import { Schema, arrayOf } from "normalizr";
 import { callApi } from "techbikers/utils/api";
 import { FundraiserSchema } from "techbikers/fundraisers/sagas";
 import * as actions from "techbikers/users/actions";
-import { createTextNotification } from "techbikers/notifications/actions";
+import {
+  createTextNotification,
+  createErrorNotification
+} from "techbikers/notifications/actions";
 
 export const UserSchema = new Schema("user");
 
@@ -38,8 +41,12 @@ export function* updateUser({ payload }) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload)
   };
-  yield call(callApi, `/riders/${payload.id}`, fetchOptions, UserSchema);
-  yield put(createTextNotification("Profile updated", 5000));
+  const result = yield call(callApi, `/riders/${payload.id}`, fetchOptions, UserSchema);
+  if (!result.error) {
+    yield put(createTextNotification("Profile updated"));
+  } else {
+    yield put(createErrorNotification("Error updating profile"));
+  }
 }
 
 export default function* root() {
