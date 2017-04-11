@@ -43,7 +43,7 @@ export function* callApi(endpoint, fetchOptions = {}, schema) {
       throw json;
     } else {
       // Make sure everything is camelcased (for consistency)
-      const response = yield call(camelizeKeys, json);
+      const response = camelizeKeys(json);
 
       // Let's do two things
       // 1) Normalize the response and dispatch it (for an entity reducer etc.)
