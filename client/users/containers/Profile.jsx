@@ -85,7 +85,7 @@ export default class RiderProfile extends Component {
               <p>{user.biography}</p>
 
               {isEditing || user.statement !== "" ?
-                <h2>Why am i doing Techbikers?</h2> : ""}
+                <h2>Why am I doing Techbikers?</h2> : ""}
 
               <p>{user.statement}</p>
             </div>
