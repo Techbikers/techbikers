@@ -54,7 +54,6 @@ export default class Account extends Component {
             </header>
 
             <ul className="list-unstyled">
-              <li><Link className="btn" to={`/riders/${user.id}`}>View/Edit your Rider Profile</Link></li>
               <li>Change your password</li>
             </ul>
 

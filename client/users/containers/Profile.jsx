@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router";
 import DocumentTitle from "react-document-title";
 
 import { fetchUserById } from "techbikers/users/actions";
-import { getAuthenticatedUser } from "techbikers/auth/selectors";
+import { getAuthenticatedUserId } from "techbikers/auth/selectors";
 import { getCurrentUser, getRidesForCurrentUser } from "techbikers/users/selectors";
 import { UserShape } from "techbikers/users/shapes";
 
@@ -12,10 +13,10 @@ import UserRidesList from "techbikers/users/containers/UserRidesList";
 import TwitterLink from "techbikers/components/TwitterLink";
 import Spinner from "techbikers/components/Spinner";
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, ownProps) => ({
   user: getCurrentUser(state),
   rides: getRidesForCurrentUser(state),
-  authenticatedUser: getAuthenticatedUser(state)
+  canEdit: Number(ownProps.params.id) === getAuthenticatedUserId(state)
 });
 
 const mapDispatchToProps = (dispatch, props) => ({
@@ -27,14 +28,10 @@ export default class RiderProfile extends Component {
   static propTypes = {
     canEdit: PropTypes.bool,
     params: PropTypes.shape({
-      id: PropTypes.number.isRequired
+      id: PropTypes.string.isRequired
     }),
     user: UserShape,
     fetchUser: PropTypes.func.isRequired
-  };
-
-  static defaultProps = {
-    canEdit: false
   };
 
   constructor(props) {
@@ -73,7 +70,7 @@ export default class RiderProfile extends Component {
                   {user.website} |
                 <TwitterLink handle={user.twitter} /></h3>
               {canEdit ?
-                <a className="btn" href="edit">Edit Profile</a> : ""}
+                <Link className="btn" to={`/account`}>Edit Profile</Link> : ""}
             </header>
 
             <div className="content text--centre">
