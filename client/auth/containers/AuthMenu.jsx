@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router";
+import styled from "styled-components";
 
 import { logout } from "techbikers/auth/actions";
 import { getCurrentPathname } from "techbikers/app/selectors";
@@ -19,6 +20,10 @@ const mapDispatchToProps = {
   logout
 };
 
+const LogOutLink = styled.a`
+  margin-right: 20px;
+`;
+
 @connect(mapStateToProps, mapDispatchToProps)
 export default class AuthMenu extends Component {
   static propTypes = {
@@ -34,13 +39,13 @@ export default class AuthMenu extends Component {
     if (isAuthenticated) {
       return (
         <div className="span2">
-          <a className="userAuth" onClick={() => this.props.logout()}>Log out</a>
-          <Link to={`/riders/${userId}`} className="userAuth">Profile</Link>
+          <LogOutLink onClick={() => this.props.logout()}>Log out</LogOutLink>
+          <Link to={`/riders/${userId}`}>Profile</Link>
         </div>
       );
     } else {
       return (
-        <Link className="userAuth" to={{
+        <Link to={{
           pathname: "/login",
           state: { modal: true, returnTo: pathname }
         }}>
