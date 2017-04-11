@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, PropTypes } from "react";
 import { Link } from "react-router";
 import styled from "styled-components";
 
@@ -23,6 +23,10 @@ const NavLink = styled(Link)`
     ${props => props.color ? `color: ${props.color}` : ""}
   }
 `;
+
+NavLink.propTypes = {
+  color: PropTypes.string
+};
 
 const BlogLink = styled.a`
   transition: color .3s linear;
