@@ -3,6 +3,7 @@ node_modules
 *.sublime*
 *.pyc
 *.sqlite
+/webpack-stats.json
 client/config/local.js
 server/settings/local.py
 
