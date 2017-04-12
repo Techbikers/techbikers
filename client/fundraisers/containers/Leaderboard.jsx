@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from "react";
 import { connect } from "react-redux";
 import DocumentTitle from "react-document-title";
+import styled from "styled-components";
 
 import { getLeaderboard } from "techbikers/fundraisers/selectors";
 import { fetchActiveFundraisers } from "techbikers/fundraisers/actions";
@@ -15,6 +16,15 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   fetchActiveFundraisers
 };
+
+const LeaderboardList = styled.ul`
+  list-style: none;
+`;
+
+const LeaderboardItem = styled.li`
+  margin: 10px 0;
+  border-bottom: 1px solid #e2e2e2;
+`;
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class Leaderboard extends Component {
@@ -38,13 +48,13 @@ export default class Leaderboard extends Component {
               <h1>Donate to one of our many riders</h1>
             </header>
 
-            <ul className="leaderboard">
+            <LeaderboardList>
               {fundraisers.map((fundraiser, position) => (
-                <li key={fundraiser.id}>
+                <LeaderboardItem key={fundraiser.id}>
                   <Fundraiser position={position + 1} {...fundraiser} />
-                </li>
+                </LeaderboardItem>
               ))}
-            </ul>
+            </LeaderboardList>
           </section>
         </div>
       </DocumentTitle>
