@@ -8,7 +8,7 @@
 // Setup
 @import "variables";
 @import "mixins";
-@import "normalize";
+@import "../../node_modules/normalize.css/normalize.css";
 
 // Typography
 @import "fonts";
@@ -29,6 +29,10 @@
   "paymentForm",
   "fundraiser";
 
+
+body {
+    margin: 0;
+}
 
 /* Styles for sponsor page */
 .list--secret {
