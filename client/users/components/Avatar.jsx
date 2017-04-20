@@ -1,9 +1,15 @@
 import React, { PropTypes } from "react";
+import styled from "styled-components";
+
+const RiderAvatar = styled.div`
+  position: absolute;
+  left: 60px;
+`;
 
 const Avatar = ({ name, avatar, size = 80 }) => (
-  <div className="rider-avatar">
+  <RiderAvatar>
     <img title={name} src={`${avatar}?s=${size}`} width={size} height={size} />
-  </div>
+  </RiderAvatar>
 );
 
 Avatar.propTypes = {
