@@ -3,6 +3,7 @@ import DocumentTitle from "react-document-title";
 import styled from "styled-components";
 
 import MailchimpForm from "techbikers/components/MailchimpForm";
+import Content from "techbikers/app/components/Content";
 
 const CoverImage = styled.div`
   background-image: url("/static/img/background.jpg");
@@ -45,6 +46,26 @@ const Strap3 = styled.div`
   line-height: 1;
 `;
 
+const Stats = styled.section`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Stat = styled.div`
+  margin-top: 26px;
+  text-align: center;
+  font-size: 80px;
+  font-weight: bold;
+  line-height: 1;
+`;
+
+const StatSmall = styled.small`
+  display: block;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+`;
+
 const IndexPage = () => (
   <DocumentTitle title="Techbikers">
     <div>
@@ -56,7 +77,7 @@ const IndexPage = () => (
         </Strapline>
       </CoverImage>
 
-      <div className="content">
+      <Content>
         <section id="mission">
           <header>
             <h1>Our Mission</h1>
@@ -67,35 +88,18 @@ const IndexPage = () => (
           </p>
         </section>
 
-        <section>
+        <Stats>
           <header>
             <h1>Stats to Date</h1>
           </header>
 
-          <div className="row">
-            <div className="span6 stat">
-              365
-              <small>cyclists</small>
-            </div>
-          </div>
-
-          <div className="row">
-            <div className="span6 stat">
-              £304,000
-              <small>raised since 2012</small>
-            </div>
-          </div>
-
-          <div className="row">
-            <div className="span6 stat">
-              1600km
-              <small>ridden</small>
-            </div>
-          </div>
-        </section>
+          <Stat>365 <StatSmall>cyclists</StatSmall></Stat>
+          <Stat>£304,000 <StatSmall>raised since 2012</StatSmall></Stat>
+          <Stat>1600km <StatSmall>ridden</StatSmall></Stat>
+        </Stats>
 
         <MailchimpForm />
-      </div>
+      </Content>
     </div>
   </DocumentTitle>
 );

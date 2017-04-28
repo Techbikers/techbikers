@@ -94,26 +94,6 @@ section > .content {
   }
 }
 
-
-// Stats
-.stat {
-  margin-top: $baseLineHeight;
-  text-align: center;
-  font-size: 80px;
-  font-weight: bold;
-  line-height: 1;
-
-  small {
-    display: block;
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-  }
-}
-.statText {
-  text-align: center;
-}
-
 // Utility classes
 .centerText {
   text-align: center;
