@@ -1,6 +1,24 @@
 import _ from "lodash";
 import React, { Component } from "react";
 
+const defaultSteps = [
+  {
+    number: 1,
+    text: "Register Interest",
+    state: ""
+  },
+  {
+    number: 2,
+    text: "Invites Sent",
+    state: ""
+  },
+  {
+    number: 3,
+    text: "Confirm & Pay",
+    state: ""
+  }
+];
+
 class RegistrationSteps extends Component {
   static propTypes = {
     step: React.PropTypes.number,
@@ -9,30 +27,13 @@ class RegistrationSteps extends Component {
 
   static defaultProps = {
     step: 1,
-    state: "active",
-    steps: [
-      {
-        "number": 1,
-        "text": "Register Interest",
-        "state": ""
-      },
-      {
-        "number": 2,
-        "text": "Invites Sent",
-        "state": ""
-      },
-      {
-        "number": 3,
-        "text": "Confirm & Pay",
-        "state": ""
-      }
-    ]
+    state: "active"
   }
 
   constructor(options) {
     super(options);
     this.state = {
-      steps: this.props.steps
+      steps: defaultSteps
     };
   }
 
