@@ -54,30 +54,6 @@ body {
   text-align: center;
 }
 
-.jersey--parent{
-  position: relative;
-  padding-left: 60px;
-  margin-bottom: 33px;
-}
-
-.jersey {
-  height:60px;
-  width:44px;
-  display: inline-block;
-  position: absolute;
-  background: image_url('yellow_jersey.png') bottom center no-repeat;
-  left:0;
-  top: -8px;
-}
-
-.jersey--green{
-  background: image_url('green_jersey.png') bottom center no-repeat;
-}
-
-.jersey--kotm{
-  background: image_url('koth_jersey.png') bottom center no-repeat;
-}
-
 .gap--big{
   margin-bottom: 33px;
 }
