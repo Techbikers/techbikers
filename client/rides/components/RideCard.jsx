@@ -1,17 +1,51 @@
 import React, { PropTypes } from "react";
 import { Link } from "react-router";
+import styled from "styled-components";
 
 import Timestamp from "techbikers/components/Timestamp";
 
+const CardLink = styled(Link)`
+  display: inline-block;
+  overflow: hidden;
+  border: 2px solid #cccccc;
+  border-radius: 5px;
+  width: 360px;
+  margin-bottom: 20px;
+  transition: border ease 0.3s;
+  list-style: none;
+  position: relative;
+
+  &:hover {
+    border-color: #4494c7;
+    text-decoration: none;
+  }
+`;
+
+const Header = styled.header`
+  padding: 10px;
+`;
+
+const Name = styled.h2`
+  margin: 0;
+`;
+
+const Time = styled.h4`
+  margin: 0;
+`;
+
 const RideCard = ({ id, name, slug, startDate, endDate }) => (
-  <div className="ride-card">
-    <Link to={`/rides/${id}/${slug}`}>
-      <header>
-        <h2>{name}</h2>
-        <h4><Timestamp value={startDate} format="D MMM" /> to <Timestamp value={endDate} format="D MMM YYYY" /></h4>
-      </header>
-    </Link>
-  </div>
+  <CardLink to={`/rides/${id}/${slug}`}>
+    <Header>
+      <Name>{name}</Name>
+      <Time>
+        <Timestamp value={startDate} format="D MMM" />
+        {" "}
+        to
+        {" "}
+        <Timestamp value={endDate} format="D MMM YYYY" />
+      </Time>
+    </Header>
+  </CardLink>
 );
 
 RideCard.propTypes = {

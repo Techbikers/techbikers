@@ -2,16 +2,25 @@ import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router";
 import DocumentTitle from "react-document-title";
+import styled from "styled-components";
 
 import { fetchUserById } from "techbikers/users/actions";
 import { getAuthenticatedUserId } from "techbikers/auth/selectors";
 import { getCurrentUser, getRidesForCurrentUser } from "techbikers/users/selectors";
 import { UserShape } from "techbikers/users/shapes";
+import { yellow } from "techbikers/utils/style-variables";
 
 import Avatar from "techbikers/users/components/Avatar";
 import UserRidesList from "techbikers/users/containers/UserRidesList";
 import TwitterLink from "techbikers/components/TwitterLink";
 import Spinner from "techbikers/components/Spinner";
+
+const Toolbar = styled.section`
+  background: ${yellow};
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 10px;
+`;
 
 const mapStateToProps = (state, ownProps) => ({
   user: getCurrentUser(state),
@@ -57,10 +66,10 @@ export default class RiderProfile extends Component {
       <DocumentTitle title={`${user.name} – Techbikers`}>
         <div id="rider-profile">
           {isEditing ?
-            <section className="toolbar">
+            <Toolbar>
               <button className="btn" type="submit">Save Changes</button>
               <button className="btn">Cancel</button>
-            </section> : ""}
+            </Toolbar> : ""}
 
           <section id="header">
             <header className="centerText">
