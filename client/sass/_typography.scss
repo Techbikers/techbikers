@@ -5,7 +5,7 @@
 
 body {
   color: $fontColor;
-  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;;
+  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   font-size: $baseFontSize;
   line-height: $baseLineHeight;
   font-weight: 300;
@@ -24,6 +24,11 @@ a {
   &:active {
 
   }
+}
+
+// Bold
+b, strong {
+  font-weight: 700;
 }
 
 // Body
