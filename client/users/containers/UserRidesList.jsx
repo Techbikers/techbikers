@@ -19,6 +19,7 @@ const mapDispatchToProps = {
 
 const List = styled.ul`
   list-style-type: none;
+  text-align: center;
   padding: 0;
 `;
 
