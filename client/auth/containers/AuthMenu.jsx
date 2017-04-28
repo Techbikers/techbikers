@@ -22,6 +22,17 @@ const mapDispatchToProps = {
 
 const LogOutLink = styled.a`
   margin-right: 20px;
+  cursor: pointer;
+
+  &, &:hover {
+    color: #FDEC18;
+  }
+`;
+
+const StyledLink = styled(Link)`
+  &, &:hover {
+    color: #FDEC18;
+  }
 `;
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -40,17 +51,17 @@ export default class AuthMenu extends Component {
       return (
         <div className="span2">
           <LogOutLink onClick={() => this.props.logout()}>Log out</LogOutLink>
-          <Link to={`/riders/${userId}`}>Profile</Link>
+          <StyledLink to={`/riders/${userId}`}>Profile</StyledLink>
         </div>
       );
     } else {
       return (
-        <Link to={{
+        <StyledLink to={{
           pathname: "/login",
           state: { modal: true, returnTo: pathname }
         }}>
           Login to Techbikers
-        </Link>
+        </StyledLink>
       );
     }
   }

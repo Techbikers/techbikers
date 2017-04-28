@@ -1,31 +1,55 @@
 import React from "react";
+import styled from "styled-components";
 
 import AuthMenu from "techbikers/auth/containers/AuthMenu";
 
+const FooterBlock = styled.footer`
+  background-color: #392C3A;
+  margin-top: 52px;
+  padding: 130px 0;
+  color: #F5EFEA;
+`;
+
+const Link = styled.a`
+  &, &:hover {
+    color: #FDEC18;
+  }
+`;
+
+const FirstRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const SocialLinks = styled.p`
+  text-align: center;
+`;
+
 const Footer = () => (
-  <div role="footer">
+  <FooterBlock>
     <div className="content">
-      <div className="row">
-        <div className="span2">
-          <nav>
-            <li><a href="mailto:hello@techbikers.com">hello@techbikers.com</a></li>
-            <li>4-5 Bonhill Street<br/>London<br/>EC2A 4BX</li>
-          </nav>
+      <FirstRow>
+        <div>
+          <Link href="mailto:hello@techbikers.com">hello@techbikers.com</Link>
+          <br />
+          4-5 Bonhill Street<br />London<br />EC2A 4BX
         </div>
-
-        <div className="span2" />
-
         <AuthMenu />
+      </FirstRow>
 
-      </div>
-
-      <p className="centerText">
-        <a href="http://www.facebook.com/techbikers" target="_blank">Facebook</a>
-        &middot;
-        <a href="http://twitter.com/techbikers" target="_blank">Twitter</a>
-      </p>
+      <SocialLinks>
+        <Link href="http://www.facebook.com/techbikers" target="_blank">
+          Facebook
+        </Link>
+        {" "}
+        ·
+        {" "}
+        <Link href="http://twitter.com/techbikers" target="_blank">
+          Twitter
+        </Link>
+      </SocialLinks>
     </div>
-  </div>
+  </FooterBlock>
 );
 
 export default Footer;
