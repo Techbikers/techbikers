@@ -85,6 +85,11 @@ const FundraiserLink = styled(Link)`
   left: 0;
 `;
 
+const RiderAvatar = styled.div`
+  position: absolute;
+  left: 60px;
+`;
+
 @connect(mapStateToProps, mapDispatchToProps)
 export default class Fundraiser extends Component {
   static propTypes = {
@@ -120,7 +125,9 @@ export default class Fundraiser extends Component {
           {position || ""}
         </FundraiserPosition>
 
-        <Avatar {...user} />
+        <RiderAvatar>
+          <Avatar {...user} />
+        </RiderAvatar>
 
         <FundraiserDetails>
           <FundraiserHeader>{user ? user.name : "loading..."}</FundraiserHeader>
