@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router";
+import styled from "styled-components";
 
 import { getRidesForCurrentUser } from "techbikers/users/selectors";
 import { fetchRidesByUser } from "techbikers/rides/actions";
@@ -15,6 +16,11 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   fetchRidesByUser
 };
+
+const List = styled.ul`
+  list-style-type: none;
+  padding: 0;
+`;
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class UserRidesList extends Component {
@@ -41,11 +47,11 @@ export default class UserRidesList extends Component {
     }
 
     return (
-      <ul className="list-unstyled">
+      <List>
         {rides.map(ride =>
           <li key={ride.id}><Link to={`/rides/${ride.id}/${ride.slug}`}>{ride.name}</Link></li>
         )}
-      </ul>
+      </List>
     );
   }
 }
