@@ -44,6 +44,7 @@
     "newforms": "0.13.2",
     "normalize.css": "6.0.0",
     "normalizr": "^3.2.2",
+    "polished": "^1.0.4",
     "raven-js": "3.4.0",
     "react": "15.3.0",
     "react-document-title": "2.0.2",

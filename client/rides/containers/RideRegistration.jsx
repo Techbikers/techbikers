@@ -22,12 +22,12 @@ import SetupFundraising from "techbikers/fundraisers/containers/SetupFundraising
 const RideRegistrationDetails = styled.div`
   padding: 0 15px;
   border-bottom: 1px solid #e2e2e2;
+  text-align: center;
 `;
 
 const RegistrationContainer = styled.div`
   margin: 40px auto;
   max-width: 420px;
-  text-align: center;
   border-radius: 3px;
   overflow: hidden;
 `;

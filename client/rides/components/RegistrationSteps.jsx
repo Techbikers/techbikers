@@ -1,5 +1,9 @@
 import _ from "lodash";
-import React, { Component } from "react";
+import React, { Component, PropTypes } from "react";
+import styled from "styled-components";
+import { darken } from "polished";
+
+import { green, red, yellow } from "techbikers/utils/style-variables";
 
 const defaultSteps = [
   {
@@ -18,6 +22,76 @@ const defaultSteps = [
     state: ""
   }
 ];
+
+const StepsList = styled.ol`
+  margin: 15px 0;
+  padding: 0;
+  display: flex;
+`;
+
+const Step = styled.li`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  flex-basis: 0;
+  color: #aaa;
+
+  color:
+    ${props => props.state === "active" ? darken(0.05, yellow) : ""}
+    ${props => props.state === "done" ? green : ""}
+    ${props => props.state === "pending" ? darken(0.05, yellow) : ""}
+    ${props => props.state === "failed" ? red : ""}
+`;
+
+Step.propTypes = {
+  state: PropTypes.string.required
+};
+
+const Icon = styled.span`
+  display: block;
+  width: 40px;
+  height: 40px;
+  line-height: 39px;
+  border: 2px solid #aaa;
+  font-size: 19px;
+  border-radius: 50%;
+  text-align: center;
+
+  ${props => props.state === "active" ? `
+    color: white;
+    background: ${darken(0.05, yellow)};
+    border-color: ${darken(0.05, yellow)};
+  ` : ""}
+
+  ${props => props.state === "done" ? `
+    color: white;
+    background: ${green};
+    border-color: ${green};
+  ` : ""}
+
+  ${props => props.state === "pending" ? `
+    color: ${darken(0.05, yellow)};
+    background: white;
+    font-size: 48px;
+    border: none;
+    width: 46px;
+  ` : ""}
+
+  ${props => props.state === "failed" ? `
+    color: white;
+    background: ${red};
+    border-color: ${red};
+  ` : ""}
+`;
+
+Icon.propTypes = {
+  state: PropTypes.string
+};
+
+const StepDescription = styled.span`
+  font-size: 16px;
+`;
 
 class RegistrationSteps extends Component {
   static propTypes = {
@@ -61,26 +135,26 @@ class RegistrationSteps extends Component {
 
   render() {
     return (
-      <ol className="steps">
+      <StepsList>
         {_.map(this.state.steps, step => {
           return this.renderStep(step);
         })}
-      </ol>
+      </StepsList>
     );
   }
 
   renderStep(step) {
     return (
-      <li key={step.number} className={`step-${step.number} ${step.state}`}>
+      <Step state={step.state} key={step.number}>
         {step.state == "done" ?
-          <span className="material-icons">done</span> :
+          <Icon state={step.state} className="material-icons">done</Icon> :
         step.state == "pending" ?
-          <span className="material-icons">schedule</span> :
+          <Icon state={step.state} className="material-icons">schedule</Icon> :
         step.state == "failed" ?
-          <span className="material-icons">clear</span> :
-          <span>{step.number}</span>}
-        <span>{step.text}</span>
-      </li>
+          <Icon state={step.state} className="material-icons">clear</Icon> :
+          <Icon state={step.state}>{step.number}</Icon>}
+        <StepDescription>{step.text}</StepDescription>
+      </Step>
     );
   }
 }

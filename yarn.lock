@@ -3960,6 +3960,10 @@ pluralize@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-1.2.1.tgz#d1a21483fd22bb41e58a12fa3421823140897c45"
 
+polished@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/polished/-/polished-1.0.4.tgz#eded0fef7d2476465eb1d8e2cd9dd9b00796fbae"
+
 postcss-apply@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/postcss-apply/-/postcss-apply-0.3.0.tgz#a2f37c5bdfa881e4c15f4f245ec0cd96dd2e70d5"
