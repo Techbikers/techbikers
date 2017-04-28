@@ -9,7 +9,7 @@ import ConnectedCompleteRegistration from "techbikers/rides/containers/Connected
 import CloseRideRegistrationModalButton from "techbikers/rides/containers/CloseRideRegistrationModalButton";
 
 const PendingRegistration = () => (
-  <div className="ride-registration--form">
+  <div>
     <p>
       Awesome - we've received your application to join this ride. You'll hear from us soon
       so in the meantime, why not jump on your bike and go for a ride.
@@ -19,22 +19,22 @@ const PendingRegistration = () => (
 );
 
 const FullyRegistered = () => (
-  <div className="ride-registration--form">
+  <div>
     <p>
       Nice work - that's all from us. On your bike and let's change lives!
     </p>
-    <CloseRideRegistrationModalButton className="btn-grey" text="OK!" />
+    <CloseRideRegistrationModalButton text="OK!" />
   </div>
 );
 
 const CreateFundraiser = () => (
-  <div className="ride-registration--form">
+  <div>
     <p>
       You're all set! You've completed registration and we've received payment - all that's left
       to do now is to setup your fundraising page and train!
     </p>
     <SetupFundraising />
-    <CloseRideRegistrationModalButton className="btn-grey" text="Not right now" />
+    <CloseRideRegistrationModalButton text="Not right now" />
   </div>
 );
 

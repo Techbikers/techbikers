@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from "react";
+import styled from "styled-components";
 import { connect } from "react-redux";
 
 import { fetchRideRegistrationDetails } from "techbikers/rides/actions";
@@ -17,6 +18,48 @@ import { FundraiserShape } from "techbikers/fundraisers/shapes";
 import RideRegistrationModal from "techbikers/rides/components/RideRegistrationModal";
 import RegistrationSteps from "techbikers/rides/components/RegistrationSteps";
 import SetupFundraising from "techbikers/fundraisers/containers/SetupFundraising";
+
+const RideRegistrationDetails = styled.div`
+  padding: 0 15px;
+  border-bottom: 1px solid #e2e2e2;
+`;
+
+const RegistrationContainer = styled.div`
+  margin: 40px auto;
+  max-width: 420px;
+  text-align: center;
+  border-radius: 3px;
+  overflow: hidden;
+`;
+
+const RegistrationPopdown = styled(RegistrationContainer)`
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.16), 0 3px 10px rgba(0, 0, 0, 0.23);
+`;
+
+const Header = styled.header`
+  display: inline-block;
+  padding: 10px 40px;
+  width: 100%;
+  margin: 0;
+  border: 3px solid #333;
+  background: #333;
+
+  ${props => props.roundedCorners ? `
+    border-radius: 3px;
+  ` : `
+    border-radius: 3px 3px 0 0;
+  `}
+  text-align: center;
+  font-size: 18px;
+  line-height: 26px;
+  vertical-align: middle;
+  color: #fff;
+`;
+
+Header.propTypes = {
+  roundedCorners: PropTypes.boolean
+};
+
 
 const mapStateToProps = state => {
   const { rideRegistrationModal } = state.ui.rides;
@@ -73,73 +116,65 @@ export default class RideRegistration extends Component {
 
   renderRideFull() {
     return (
-      <div className="ride-registration--container">
-        <header className="header-btn">
-          <a className="btn">Now sold out</a>
-        </header>
+      <RegistrationContainer>
+        <Header roundedCorners={true}>Now sold out</Header>
         <span className="more-info">
           Registration for this ride has closed as it is now sold out
         </span>
-      </div>
+      </RegistrationContainer>
     );
   }
 
   renderPendingRegistration() {
     return (
-      <div className="ride-registration--container ride-registration--popdown">
-        <header className="header-btn">
-          <a className="btn">Waiting for invite...</a>
-        </header>
-        <div className="ride-registration--content">
+      <RegistrationPopdown>
+        <Header>Waiting for invite...</Header>
+        <div>
           <RegistrationSteps step={2} state="pending" />
-          <div className="ride-registration--details">
+          <RideRegistrationDetails>
             <p>
               We've received your application to join this ride. You'll hear from us soon
               so in the meantime, why not jump on your bike and go for a ride?
             </p>
-          </div>
+          </RideRegistrationDetails>
         </div>
-      </div>
+      </RegistrationPopdown>
     );
   }
 
   renderExpiredRegistration() {
     return (
-      <div className="ride-registration--container ride-registration--popdown">
-        <header className="header-btn">
-          <a className="btn">Invite Expired</a>
-        </header>
-        <div className="ride-registration--content">
+      <RegistrationPopdown>
+        <Header>Invite Expired</Header>
+        <div>
           <RegistrationSteps step={3} state="failed"/>
-          <div className="ride-registration--details">
+          <RideRegistrationDetails>
             <p>
               Unfortunately your invite to register for this ride has now expired. Demand for our rides
               is always high so if you fail to accept the invite to register for the ride then we give
               your spot to someone else on the waiting list.
             </p>
-          </div>
+          </RideRegistrationDetails>
         </div>
-      </div>
+      </RegistrationPopdown>
     );
   }
 
   renderRejectedRegistration() {
     return (
-      <div className="ride-registration--container ride-registration--popdown">
-        <header className="header-btn">
-          <a className="btn">No invite</a>
-        </header>
-        <div className="ride-registration--content">
+      <RegistrationPopdown>
+        <Header>No invite</Header>
+        <div>
           <RegistrationSteps step={2} state="failed"/>
-          <div className="ride-registration--details">
+          <RideRegistrationDetails>
             <p>
               Due to exceptional demand we've been unable to invite you to join the ride.
               Sorry if this is a disappointing outcome but we hope you'll apply to join
               another Techbikers ride in the future!
             </p>
-          </div>
+          </RideRegistrationDetails>
         </div>
-      </div>
+      </RegistrationPopdown>
     );
   }
 
@@ -147,49 +182,43 @@ export default class RideRegistration extends Component {
     const { user } = this.props;
 
     return (
-      <div className="ride-registration--container ride-registration--popdown">
-        <header className="header-btn">
-          <a className="btn btn-grey">You've been invited to join!</a>
-        </header>
-        <div className="ride-registration--content">
+      <RegistrationPopdown>
+        <Header>You've been invited to join!</Header>
+        <div>
           <RegistrationSteps step={3} state="pending"/>
-          <div className="ride-registration--details">
+          <RideRegistrationDetails>
             <p>
               Good news, {user.first_name} - you've been invited to join the ride. You now need to confirm
               and pay the registration fee before your invite expires.
             </p>
-          </div>
-          <a className="btn btn-green" onClick={() => this.props.handleOpenModal()}>Complete Registration</a>
+          </RideRegistrationDetails>
+          <a className="btn btn-green btn-full" onClick={() => this.props.handleOpenModal()}>Complete Registration</a>
         </div>
-      </div>
+      </RegistrationPopdown>
     );
   }
 
   renderCompletedRegistration() {
     return (
-      <div className="ride-registration--container ride-registration--popdown">
-        <header className="header-btn">
-          <a className="btn">You're signed up for the ride!</a>
-        </header>
-        <div className="ride-registration--content">
+      <RegistrationPopdown>
+        <Header>You're signed up for the ride!</Header>
+        <div>
           <RegistrationSteps step={4}/>
-          <div className="ride-registration--details">
+          <RideRegistrationDetails>
             <p>
               <SetupFundraising {...this.props} />
             </p>
-          </div>
+          </RideRegistrationDetails>
         </div>
-      </div>
+      </RegistrationPopdown>
     );
   }
 
   renderStartRegistration() {
     return (
-      <div className="ride-registration--container">
-        <header className="header-btn">
-          <a className="btn btn-green" onClick={() => this.props.handleOpenModal()}>Sign up for the ride!</a>
-        </header>
-      </div>
+      <RegistrationContainer>
+        <a className="btn btn-green btn-full" onClick={() => this.props.handleOpenModal()}>Sign up for the ride!</a>
+      </RegistrationContainer>
     );
   }
 
@@ -245,7 +274,7 @@ export default class RideRegistration extends Component {
     }
 
     return (
-      <section id="ride-registration">
+      <section>
         {this.renderContent()}
 
         {rideRegistrationModal &&

@@ -11,10 +11,10 @@ import Timestamp from "techbikers/components/Timestamp";
 import RegistrationSteps from "techbikers/rides/components/RegistrationSteps";
 
 const CompleteRegistrationForm = ({ registration, ride, paymentProcessing, handlePayment }) => (
-  <div className="ride-registration--form">
+  <div>
     <RegistrationSteps step={3} />
 
-    <div className="ride-registration--details centerText">
+    <div className="centerText">
       <h3>Great news - we'd love to have you as part of TechBikers ride!</h3>
 
       {registration.signupExpires &&

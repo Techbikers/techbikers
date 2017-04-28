@@ -53,16 +53,16 @@ export default class RideRegistrationForm extends Component {
     const fields = this.state.form.boundFieldsObj();
 
     return (
-      <div className="ride-registration--form">
+      <div>
         <RegistrationSteps step={1} />
-        <div className="ride-registration--details">
+        <div>
           <p>
             {`We're thrilled you want to take part in ${ride.name}. To make sure we've
               got a great mix of people in the peloton, we've got a short application form below.`}
           </p>
           <p>
-            Please bear in mind: <b>If you're selected, you will have to pay a minimum contribution of
-              <FormattedNumber style="currency" currency={ride.currency} value={ride.price} /></b> to the ride
+            Please bear in mind: <b>If you're selected, you will have to pay a minimum contribution
+              of <FormattedNumber style="currency" currency={ride.currency} value={ride.price} /></b> to the ride
             cost to secure your spot. You can of course contribute more so more money is left for Room to Read!
           </p>
         </div>

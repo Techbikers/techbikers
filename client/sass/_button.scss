@@ -99,3 +99,7 @@
 .btn-yellow {
   @include button-variant($grey, $yellow);
 }
+.btn-full {
+  width: 100%;
+  margin: 0;
+}
