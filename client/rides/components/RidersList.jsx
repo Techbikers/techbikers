@@ -1,20 +1,34 @@
 import React, { PropTypes } from "react";
+import styled from "styled-components";
 
 import { UserShape } from "techbikers/users/shapes";
 
-import RiderCard from "techbikers/users/components/UserCard";
+import RiderCard from "techbikers/users/components/RiderCard";
+
+const Riders = styled.section`
+  border-top: 1px solid #e2e2e2;
+  border-bottom: 1px solid #e2e2e2;
+  background: #f5f5f5;
+`;
+
+const List = styled.ul`
+  margin: 20px 0;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+`;
 
 const RidersList = ({ riders }) => (
-  <section id="riders">
+  <Riders>
     <div className="content">
       <h2>The Riders</h2>
-      <ul>
+      <List>
         {riders.map(rider =>
           <RiderCard key={rider.id} {...rider} />
         )}
-      </ul>
+      </List>
     </div>
-  </section>
+  </Riders>
 );
 
 RidersList.propTypes = {

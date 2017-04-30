@@ -71,7 +71,7 @@ export default class RidePage extends Component {
     } else {
       return (
         <DocumentTitle title={`${ride.name} - Techbikers`}>
-          <div id="ride" itemScope itemType="http://schema.org/Event">
+          <div itemScope itemType="http://schema.org/Event">
             <section id="header">
               <header>
                 <h1 itemProp="name">{ride.name}</h1>
