@@ -1,13 +1,24 @@
 import React, { PropTypes } from "react";
 import { connect } from "react-redux";
-import cx from "classnames";
+import styled from "styled-components";
 
 import { NotificationShape } from "techbikers/notifications/shapes";
 
-import ProgressNotification from "techbikers/notifications/components/ProgressNotification";
-import TextNotification from "techbikers/notifications/components/TextNotification";
+import ProgressNotification
+  from "techbikers/notifications/components/ProgressNotification";
+import TextNotification
+  from "techbikers/notifications/components/TextNotification";
 
-import styles from "./NotificationArea.css";
+const Root = styled.div`
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 999;
+
+  & > * {
+    margin: 16px;
+  }
+`;
 
 const mapStateToProps = state => {
   const { queue, byId } = state.notifications;
@@ -36,15 +47,14 @@ NotificationRenderer.propTypes = {
   notification: NotificationShape
 };
 
-const NotificationArea = ({ className, currentNotification }) => (
-  <div className={cx(styles.NotificationArea, className)}>
+const NotificationArea = ({ currentNotification }) => (
+  <Root>
     {currentNotification &&
-      <NotificationRenderer notification={currentNotification} /> }
-  </div>
+      <NotificationRenderer notification={currentNotification} />}
+  </Root>
 );
 
 NotificationArea.propTypes = {
-  className: PropTypes.string,
   currentNotification: NotificationShape
 };
 
