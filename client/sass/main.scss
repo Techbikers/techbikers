@@ -30,57 +30,11 @@ body {
     margin: 0;
 }
 
-/* Styles for sponsor page */
-.list--secret {
-  list-style: none;
-}
-
-.list--inline li {
-  display: inline-block;
-}
-
-.nudge {
-  margin-right: 30px;
-}
-
-.sponsors ul { padding: 0}
-
-.media, .bd {overflow:hidden; _overflow:visible; zoom:1;}
-.media .img {float:left; margin-right: 20px;}
-.media .img img{display:block;}
-.media .imgExt{float:right; margin-left: 20px;}
-
 .text--centre{
   text-align: center;
 }
 
-.gap--big{
-  margin-bottom: 33px;
-}
-
-.sponsors h3{
-  margin-top: 0;
-}
-
-.inkind{
-  text-align: center;
-  margin-top: 20px;
-}
-
-.inkind .img{
-  display: block;
-  margin:0 20px 20px;
-  width:205px;
-  height:154px;
-}
-
-.inkind .img > img{
-  width:205px;
-}
-
-
 // Ride Page
-
 .ride-list {
     margin: 30px 0 !important;
     padding: 0;
