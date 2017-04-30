@@ -1,9 +1,118 @@
 import React, { Component, PropTypes } from "react";
 import forms, { Form } from "newforms";
+import styled from "styled-components";
 
 import Button from "techbikers/components/Button";
 import PaymentUtils from "../utils/paymentUtils";
 import FormField from "./FormField";
+
+const FormComponent = styled.form`
+  width: 420px;
+  padding: 20px;
+  margin: auto;
+  background: #f5f5f5;
+`;
+
+const PaymentFormField = styled(FormField)`
+  width: 100%;
+`;
+
+const Amount = styled.h2`
+  margin: 0 0 10px 35px;
+`;
+
+const AmountFormField = styled(PaymentFormField)`
+  width: 90px;
+
+  input {
+    margin: 0;
+    margin-bottom: 1px;
+  }
+`;
+
+const CardDetails = styled.div`
+  height: 200px;
+  width: 350px;
+  padding: 10px 20px;
+  background: #DDD;
+  border-radius: 16px;
+  margin: 0 auto 20px auto;
+`;
+
+const Title = styled.h3`
+  margin: 10px 0 20px 0;
+`;
+
+const Row = styled.div`
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const CardNumber = styled.div`
+  position: relative;
+  width: 78%;
+`;
+
+const CardIcon = styled.span`
+  position: absolute;
+  top: 9px;
+  right: 9px;
+  display: block;
+  width: 32px;
+  height: 20px;
+  z-index: 20;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 32px 20px;
+
+  ${props => props.type === "amex" ? `
+    background-image: url("/static/img/icons/amex.png");
+  ` : ""}
+
+  ${props => props.type === "diners" ? `
+    background-image: url("/static/img/icons/diners.png");
+  ` : ""}
+
+  ${props => props.type === "discover" ? `
+    background-image: url("/static/img/icons/discover.png");
+  ` : ""}
+
+  ${props => props.type === "jcb" ? `
+    background-image: url("/static/img/icons/jcb.png");
+  ` : ""}
+
+  ${props => props.type === "mastercard" ? `
+    background-image: url("/static/img/icons/mastercard.png");
+  ` : ""}
+
+  ${props => props.type === "visa" ? `
+    background-image: url("/static/img/icons/visa.png");
+  ` : ""}
+`;
+
+CardIcon.propTypes = {
+  type: PropTypes.string
+};
+
+const Cvc = styled.div`
+  width: 18%;
+`;
+
+const NameOnCard = styled.div`
+  width: 60%;
+`;
+
+const ExpiryDate = styled.div`
+  width: 92px;
+`;
+
+const Submit = styled.div`
+  padding: 15px;
+  margin: 0 -20px -20px -20px;
+  background: #e2e2e2;
+  border-radius: 0 0 3px 3px;
+`;
 
 export default class PaymentForm extends Component {
   static propTypes = {
@@ -132,39 +241,41 @@ export default class PaymentForm extends Component {
     const { customAmount, submitText, currency, loading } = this.props;
 
     return (
-      <form className="payment-form" onSubmit={this.handleFormSubmit}>
+      <FormComponent onSubmit={this.handleFormSubmit}>
         {customAmount ?
-          <div className="payment-form--amount row">
-            <h2>I can contribute {currency}<FormField field={fields.amount} /></h2>
-          </div> : ""}
+          <Amount>
+            I can contribute {currency} <AmountFormField field={fields.amount} />
+          </Amount> : ""}
 
-        <div className="payment-form--credit-card">
-          <div className="row payment-form--title">
-            <h3>Card Details</h3>
-          </div>
-          <div className="row">
-            <div className="longNumber">
-              <FormField field={fields.number} />
-              <span className={`card-type ${PaymentUtils.getCardType(this.state.form.data.number)}`} />
-            </div>
-            <FormField className="cvc" field={fields.cvc} />
-          </div>
+        <CardDetails>
+          <Title>Card Details</Title>
+          <Row>
+            <CardNumber>
+              <PaymentFormField field={fields.number} />
+              <CardIcon type={PaymentUtils.getCardType(this.state.form.data.number)} />
+            </CardNumber>
+            <Cvc>
+              <PaymentFormField field={fields.cvc} />
+            </Cvc>
+          </Row>
 
-          <div className="row">
-            <FormField className="nameOnCard" field={fields.name} />
+          <Row>
+            <NameOnCard>
+              <PaymentFormField field={fields.name} />
+            </NameOnCard>
 
-            <div className="exp">
-              <FormField className="month" field={fields.exp} />
-            </div>
-          </div>
-        </div>
+            <ExpiryDate>
+              <PaymentFormField field={fields.exp} />
+            </ExpiryDate>
+          </Row>
+        </CardDetails>
 
-        <div className="payment-form--submit">
+        <Submit>
           <Button type="submit" loading={loading}>
             {submitText}
           </Button>
-        </div>
-      </form>
+        </Submit>
+      </FormComponent>
     );
   }
 }

@@ -1,5 +1,6 @@
 import React, { PropTypes } from "react";
 import { FormattedNumber } from "react-intl";
+import styled from "styled-components";
 
 import { RideShape, RegistrationShape } from "techbikers/rides/shapes";
 import { UserShape } from "techbikers/users/shapes";
@@ -10,25 +11,31 @@ import PaymentForm from "techbikers/components/PaymentForm";
 import Timestamp from "techbikers/components/Timestamp";
 import RegistrationSteps from "techbikers/rides/components/RegistrationSteps";
 
+const Description = styled.div`
+  text-align: center;
+`;
+
 const CompleteRegistrationForm = ({ registration, ride, paymentProcessing, handlePayment }) => (
   <div>
     <RegistrationSteps step={3} />
 
-    <div className="centerText">
-      <h3>Great news - we'd love to have you as part of TechBikers ride!</h3>
+    <div>
+      <Description>
+        <h3>Great news - we'd love to have you as part of TechBikers ride!</h3>
 
-      {registration.signupExpires &&
+        {registration.signupExpires &&
+          <p>
+            <b>You have until <Timestamp format="D MMM" value={registration.signupExpires} /> to
+            register.</b> After this you may lose your spot to someone else.</p>}
+
         <p>
-          <b>You have until <Timestamp format="D MMM" value={registration.signupExpires} /> to
-          register.</b> After this you may lose your spot to someone else.</p>}
+          <b>The ride costs about <FormattedNumber style="currency" currency={ride.currency} value={ride.fullCost} /> per rider.
+            We're asking for a minimum contribution of <FormattedNumber style="currency" currency={ride.currency} value={ride.price} />.</b>
+          If you are able, we welcome you to pay more. This means more sponsor money goes directly to Room to Read!
+        </p>
 
-      <p>
-        <b>The ride costs about <FormattedNumber style="currency" currency={ride.currency} value={ride.fullCost} /> per rider.
-          We're asking for a minimum contribution of <FormattedNumber style="currency" currency={ride.currency} value={ride.price} />.</b>
-        If you are able, we welcome you to pay more. This means more sponsor money goes directly to Room to Read!
-      </p>
-
-      <Errors errorKey="payment" />
+        <Errors errorKey="payment" />
+      </Description>
 
       <PaymentForm
         loading={paymentProcessing}
