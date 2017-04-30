@@ -1,21 +1,48 @@
 import React, { PropTypes } from "react";
-import cx from "classnames";
+import styled from "styled-components";
 
 import Notification from "techbikers/notifications/components/Notification";
+import { brandColor } from "techbikers/utils/style-variables";
 
-import styles from "./ProgressNotification.css";
+const Root = styled(Notification)`
+  background: #333;
+`;
+
+const OuterProgressBar = styled.div`
+  width: 100%;
+  height: 0.5em;
+  margin: 0.4em 0;
+  border-radius: 0.5em;
+  background: white;
+`;
+
+const InnerProgressBar = styled.div`
+  height: 100%;
+  min-width: 1em;
+  border-radius: 0.5em;
+  background: ${brandColor};
+  width: ${props => `${props.progress}%`}
+`;
+
+InnerProgressBar.propTypes = {
+  progress: PropTypes.number.isRequired
+};
+
+const Text = styled.span`
+  max-width: 100%;
+  font-size: 0.8rem;
+`;
 
 const ProgressNotification = ({ className, text, progress }) => (
-  <Notification className={cx(styles.ProgressNotification, className)}>
-    <div className={styles.progressBarOuter}>
-      <div className={styles.progressBarInner} style={{ width: `${progress}%` }} />
-    </div>
-    <span className={styles.text}>{text}</span>
-  </Notification>
+  <Root>
+    <OuterProgressBar>
+      <InnerProgressBar propgress={progress} />
+    </OuterProgressBar>
+    <Text>{text}</Text>
+  </Root>
 );
 
 ProgressNotification.propTypes = {
-  className: PropTypes.string,
   text: PropTypes.string.isRequired,
   progress: PropTypes.number.isRequired
 };

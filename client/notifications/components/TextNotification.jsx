@@ -1,18 +1,29 @@
 import React, { PropTypes } from "react";
-import cx from "classnames";
+import styled from "styled-components";
 
 import Notification from "techbikers/notifications/components/Notification";
+import { errorColor } from "techbikers/utils/style-variables";
 
-import styles from "./TextNotification.css";
+const Root = styled(Notification)`
+  ${props => props.type === "text" ? `
+    background-color: #fff;
+  ` : ""}
 
-const TextNotification = ({ className, text, type = "text" }) => (
-  <Notification className={cx(styles.TextNotification, styles[type], className)}>
-    <span>{text}</span>
-  </Notification>
+  ${props => props.type === "error" ? `
+    color: #fff;
+    background-color: ${errorColor}
+  ` : ""}
+`;
+
+Root.propTypes = {
+  type: PropTypes.string
+};
+
+const TextNotification = ({ text, type = "text" }) => (
+  <Root type={type}>{text}</Root>
 );
 
 TextNotification.propTypes = {
-  className: PropTypes.string,
   type: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired
 };

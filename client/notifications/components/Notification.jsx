@@ -1,17 +1,12 @@
-import React, { PropTypes } from "react";
-import cx from "classnames";
+import React from "react";
+import styled from "styled-components";
 
-import styles from "./Notification.css";
-
-const Notification = ({ className, children, ...props }) => (
-  <div className={cx(styles.Notification, className)} {...props}>
-    {children}
-  </div>
-);
-
-Notification.propTypes = {
-  className: PropTypes.string,
-  children: PropTypes.node
-};
-
-export default Notification;
+export default styled.div`
+  position: relative;
+  float: left;
+  padding: 16px 24px;
+  min-width: 280px;
+  max-width: 520px;
+  border-radius: 2px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+`;
