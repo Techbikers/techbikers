@@ -1,4 +1,6 @@
 .SpreadBox {
   composes: spread from "css/layout";
-  composes: flex align-center justify-center from "css/flex";
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
