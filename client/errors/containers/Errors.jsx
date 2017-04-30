@@ -1,14 +1,31 @@
 import React, { PropTypes } from "react";
 import { connect } from "react-redux";
-import cx from "classnames";
+import styled from "styled-components";
 
 import { ErrorShape } from "techbikers/errors/shapes";
-
-import styles from "./Errors.css";
+import { errorColor } from "techbikers/utils/style-variables";
 
 const mapStateToProps = (state, props) => ({
   error: state.errors[props.errorKey]
 });
+
+const Root = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const Error = styled.div`
+  padding: 8px 16px;
+  margin: 16px;
+  background-color: ${errorColor};
+  border-radius: 4px;
+  text-align: center;
+
+  ${props => props.full ? `
+    flex-grow: 1;
+  ` : ""}
+
+`;
 
 const Errors = ({ error, full }) => {
   if (!error) {
@@ -16,11 +33,11 @@ const Errors = ({ error, full }) => {
   }
 
   return (
-    <div className={styles.Errors}>
-      <div className={cx(styles.content, { [styles.full]: full })}>
+    <Root>
+      <Error full={full}>
         {error.message}
-      </div>
-    </div>
+      </Error>
+    </Root>
   );
 };
 
