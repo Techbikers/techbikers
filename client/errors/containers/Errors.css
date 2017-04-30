@@ -5,7 +5,7 @@
 .content {
   composes: m2 py1 px2 from "css/spacing";
   composes: bg-error from "css/color";
-  composes: rounded from "css/rounded";
+  border-radius: 4px;
   composes: text-centered from "css/text";
 }
 
