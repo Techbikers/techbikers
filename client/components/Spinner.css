@@ -15,8 +15,9 @@
 }
 
 .cube {
-  composes: absolute top left from "css/layout";
-
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 0.35em;
   height: 0.35em;
   animation: cubemove 1.8s infinite ease-in-out;
@@ -28,13 +29,12 @@
 
 .cube1 {
   composes: cube;
-  composes: bg-green from "css/color";
+  background-color: var(--green-color);
 }
 
 .cube2 {
   composes: cube;
-  composes: bg-purple from "css/color";
-
+  background-color: var(--purple-color);
   animation-delay: -0.9s;
 }
 

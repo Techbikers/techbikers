@@ -1,6 +1,6 @@
 .Button {
-  composes: relative inline-block from "css/layout";
-
+  position: relative;
+  display: inline-block;
   padding: 0;
   margin: 15px 30px;
   color: inherit;
@@ -55,7 +55,7 @@
 }
 
 .block {
-  composes: full from "css/layout";
+  width: 100%;
 }
 
 /* Button Kinds */
@@ -95,7 +95,6 @@
 }
 
 .spinner {
-  composes: inline-block from "css/layout";
-
+  display: inline-block;
   margin: -3px 0;
 }
