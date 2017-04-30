@@ -32,7 +32,7 @@ const wrapComponent = WrappedComponent => {
     return (
       <WrappedComponent className={computedClassName} {...props} >
         <div className={styles.contents}>
-          {loading ? <Spinner className={styles.spinner} light size={32} /> : children}
+          {loading ? <Spinner light noMargin size={32} /> : children}
         </div>
       </WrappedComponent>
     );

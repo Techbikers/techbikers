@@ -40,7 +40,7 @@ export default class ChapterPage extends Component {
     const { chapter } = this.props;
 
     if (!chapter) {
-      return <Spinner message="loading ride details" />;
+      return <Spinner>loading ride details</Spinner>;
     } else {
       return (
         <DocumentTitle title={`${chapter.name} Chapter – Techbikers`}>

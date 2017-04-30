@@ -93,8 +93,3 @@
   &:hover  { background: color(var(--error-color) shade(10%)); }
   &:active { background: color(var(--error-color) shade(20%)); }
 }
-
-.spinner {
-  display: inline-block;
-  margin: -3px 0;
-}

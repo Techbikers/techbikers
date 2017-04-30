@@ -67,7 +67,7 @@ export default class RidePage extends Component {
     const { ride, chapter, riders } = this.props;
 
     if (!ride) {
-      return <Spinner message="loading ride details" />;
+      return <Spinner>loading ride details</Spinner>;
     } else {
       return (
         <DocumentTitle title={`${ride.name} - Techbikers`}>
