@@ -1,17 +1,13 @@
 import React, { PropTypes } from "react";
-import cx from "classnames";
+import styled from "styled-components";
 
-import styles from "./SpreadBox.css";
-
-const SpreadBox = ({ className, children }) => (
-  <div className={cx(styles.SpreadBox, className)}>
-    {children}
-  </div>
-);
-
-SpreadBox.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string
-};
-
-export default SpreadBox;
+export default styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
