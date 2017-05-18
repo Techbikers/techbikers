@@ -15,6 +15,7 @@ import { ChapterShape } from "techbikers/chapters/shapes";
 
 import RideRegistration from "techbikers/rides/containers/RideRegistration";
 import ConnectedRidersList from "techbikers/rides/containers/ConnectedRidersList";
+import Sponsors from "techbikers/rides/components/Sponsors";
 import Timestamp from "techbikers/components/Timestamp";
 import Spinner from "techbikers/components/Spinner";
 
@@ -61,7 +62,7 @@ export default class RidePage extends Component {
   }
 
   render() {
-    const { ride, chapter } = this.props;
+    const { ride, chapter, sponsors } = this.props;
 
     if (!ride) {
       return <Spinner>loading ride details</Spinner>;
@@ -86,6 +87,22 @@ export default class RidePage extends Component {
             <RideRegistration />
 
             <ConnectedRidersList />
+
+            {
+              sponsors.gold ? <Sponsors sponsors={sponsors.gold} label="Gold sponsors" size={100}/> : null
+            }
+
+            {
+              sponsors.silver ? <Sponsors sponsors={sponsors.silver} label="Silver sponsors" size={80}/> : null
+            }
+
+            {
+              sponsors.bronze ? <Sponsors sponsors={sponsors.bronze} label="Bronze sponsors" size={50}/> : null
+            }
+
+            {
+              sponsors.bottle ? <Sponsors sponsors={sponsors.bottle} label="Bottle sponsors" size={30}/> : null
+            }
 
             <section id="description">
               <div className="content" dangerouslySetInnerHTML={{ __html: ride.descriptionHtml }} />
