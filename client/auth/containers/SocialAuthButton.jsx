@@ -2,6 +2,7 @@ import React, { PropTypes } from "react";
 import { connect } from "react-redux";
 
 import { authenticateSocialUser } from "techbikers/auth/actions";
+import Button from "techbikers/components/Button";
 
 const mapDispatchToProps = (dispatch, props) => {
   const { connection, callbackReturnTo, callbackAction } = props;
@@ -13,10 +14,10 @@ const mapDispatchToProps = (dispatch, props) => {
   };
 };
 
-const SocialAuthButton = ({ connection, children, className = "btn-blue", handleSocialAuth }) => (
-  <button className={`btn ${className}`} type="submit" onClick={() => handleSocialAuth()}>
+const SocialAuthButton = ({ connection, children, handleSocialAuth }) => (
+  <Button type="submit" onClick={() => handleSocialAuth()}>
     {children || `Login with ${connection}`}
-  </button>
+  </Button>
 );
 
 SocialAuthButton.propTypes = {
@@ -27,7 +28,6 @@ SocialAuthButton.propTypes = {
     payload: PropTypes.any
   }),
   children: PropTypes.node,
-  className: PropTypes.string,
   handleSocialAuth: PropTypes.func.isRequired,
 };
 

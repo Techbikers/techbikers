@@ -2,6 +2,8 @@ import React, { PropTypes } from "react";
 import { Link } from "react-router";
 import styled from "styled-components";
 
+import Button from "techbikers/components/Button";
+
 const Content = styled.header`
   width: 800px;
   margin: auto;
@@ -73,7 +75,7 @@ const Header = () => (
       </Section>
 
       <Section>
-        <Link className="btn btn-green" to="/donate">Donate!</Link>
+        <Button type="link" kind="positive" to="/donate">Donate!</Button>
       </Section>
     </Navigation>
   </Content>

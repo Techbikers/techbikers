@@ -10,6 +10,7 @@ import { getCurrentUser, getRidesForCurrentUser } from "techbikers/users/selecto
 import { UserShape } from "techbikers/users/shapes";
 import { yellow } from "techbikers/utils/style-variables";
 
+import Button from "techbikers/components/Button";
 import Avatar from "techbikers/users/components/Avatar";
 import UserRidesList from "techbikers/users/containers/UserRidesList";
 import TwitterLink from "techbikers/components/TwitterLink";
@@ -54,20 +55,12 @@ export default class RiderProfile extends Component {
     fetchUser: PropTypes.func.isRequired
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      isEditing: false
-    };
-  }
-
   componentWillMount() {
     this.props.fetchUser();
   }
 
   render() {
     const { user, canEdit } = this.props;
-    const { isEditing } = this.state;
 
     if (!user) {
       return <Spinner />;
@@ -76,12 +69,6 @@ export default class RiderProfile extends Component {
     return (
       <DocumentTitle title={`${user.name} – Techbikers`}>
         <div id="rider-profile">
-          {isEditing ?
-            <Toolbar>
-              <button className="btn" type="submit">Save Changes</button>
-              <button className="btn">Cancel</button>
-            </Toolbar> : ""}
-
           <section id="header">
             <header className="centerText">
               <Avatar {...user} size={130} rounded />
@@ -90,13 +77,13 @@ export default class RiderProfile extends Component {
                   {user.website} |
                 <TwitterLink handle={user.twitter} /></h3>
               {canEdit ?
-                <Link className="btn" to="/account">Edit Profile</Link> : ""}
+                <Button type="link" to="/account">Edit Profile</Button> : ""}
             </header>
 
             {user.donationPage &&
               <div className="content text--centre">
                 <p>
-                  <a className="btn" href={user.donationPage}>Sponsor {user.firstName}</a>
+                  <Button type="a" href={user.donationPage}>Sponsor {user.firstName}</Button>
                 </p>
               </div>}
           </section>
@@ -105,7 +92,7 @@ export default class RiderProfile extends Component {
             <div className="content centerText">
               <p>{user.biography}</p>
 
-              {isEditing || user.statement !== "" ?
+              {user.statement !== "" ?
                 <h2>Why am I doing Techbikers?</h2> : ""}
 
               <p>{user.statement}</p>

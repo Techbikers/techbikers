@@ -6,6 +6,7 @@ import { RideShape } from "techbikers/rides/shapes";
 
 import FormField from "techbikers/components/FormField";
 import RegistrationSteps from "techbikers/rides/components/RegistrationSteps";
+import Button from "techbikers/components/Button";
 
 const DetailsForm = Form.extend({
   statement: forms.CharField({
@@ -79,9 +80,9 @@ export default class RideRegistrationForm extends Component {
             </div>
           </div>
           <div className="payment-form--submit" style={{ textAlign: "center" }}>
-            <button className="btn btn-blue" type="submit">
+            <Button type="submit">
               {`Apply for ${ride.name}`}
-            </button>
+            </Button>
           </div>
         </form>
       </div>

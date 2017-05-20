@@ -14,7 +14,7 @@ const PendingRegistration = () => (
       Awesome - we've received your application to join this ride. You'll hear from us soon
       so in the meantime, why not jump on your bike and go for a ride.
     </p>
-    <CloseRideRegistrationModalButton className="btn-green" text="Great!" />
+    <CloseRideRegistrationModalButton kind="positive">Great!</CloseRideRegistrationModalButton>
   </div>
 );
 
@@ -23,7 +23,7 @@ const FullyRegistered = () => (
     <p>
       Nice work - that's all from us. On your bike and let's change lives!
     </p>
-    <CloseRideRegistrationModalButton text="OK!" />
+    <CloseRideRegistrationModalButton>OK!</CloseRideRegistrationModalButton>
   </div>
 );
 
@@ -34,7 +34,7 @@ const CreateFundraiser = () => (
       to do now is to setup your fundraising page and train!
     </p>
     <SetupFundraising />
-    <CloseRideRegistrationModalButton text="Not right now" />
+    <CloseRideRegistrationModalButton>Not right now</CloseRideRegistrationModalButton>
   </div>
 );
 

@@ -1,5 +1,7 @@
 import React from "react"
 
+import Button from "techbikers/components/Button";
+
 const MailchimpForm = () => (
   <section id="mailchimp" style={{ background: "#4494c7", padding: 15, marginTop: 40, borderRadius: 10, color: "white" }}>
     <header style={{ margin: 0 }}>
@@ -28,7 +30,7 @@ const MailchimpForm = () => (
       </div>
 
       <div>
-        <input type="submit" value="Subscribe" name="subscribe" className="btn btn-green" />
+        <Button type="submit" kind="positive">Subscribe</Button>
       </div>
     </form>
   </section>
