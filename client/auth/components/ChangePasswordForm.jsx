@@ -1,9 +1,14 @@
 import React from "react";
+import styled from "styled-components";
 
 import Button from "techbikers/components/Button";
 
+const Form = styled.form`
+  margin-bottom: 26px;
+`;
+
 const ChangePasswordForm = () => (
-  <form>
+  <Form>
     <h1>Change Your Password</h1>
     <div className="row centerText">
       <input name="oldpassword" type="password" />
@@ -19,7 +24,7 @@ const ChangePasswordForm = () => (
         <Button type="submit">Change Password</Button>
       </p>
     </div>
-  </form>
+  </Form>
 );
 
 export default ChangePasswordForm;

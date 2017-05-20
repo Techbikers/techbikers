@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { replace } from "react-router-redux";
 import DocumentTitle from "react-document-title";
 import forms, { Form } from "newforms";
+import styled from "styled-components";
 
 import { beginPasswordReset } from "techbikers/auth/actions";
 import { clearPasswordResetStatus } from "techbikers/auth/actions/ui";
@@ -30,6 +31,10 @@ const mapDispatchToProps = {
   beginPasswordReset,
   clearPasswordResetStatus
 };
+
+const FormElement = styled.form`
+  margin-bottom: 26px;
+`;
 
 @requireAnonymity()
 @connect(mapStateToProps, mapDispatchToProps)
@@ -85,7 +90,7 @@ export default class PasswordReset extends Component {
                 No problem! Just enter the email address you used to register your account with, click continue,
                 and we'll send an email to that address with a link to reset your password.
               </p>
-              <form id="resetpassword" role="form" onSubmit={this.handleResetPassword}>
+              <FormElement role="form" onSubmit={this.handleResetPassword}>
                 <div className="row centerText">
                   {Object.keys(fields).map(key =>
                     <FormField key={fields[key].htmlName} field={fields[key]} className="span2 offset2" />
@@ -96,7 +101,7 @@ export default class PasswordReset extends Component {
                     <Button loading={resetStatus === "loading"} kind="positive" type="submit">Continue</Button>
                   </div>
                 </div>
-              </form>
+              </FormElement>
             </div>
           }
         </section>

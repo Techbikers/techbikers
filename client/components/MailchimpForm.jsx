@@ -1,6 +1,11 @@
 import React from "react"
+import styled from "styled-components";
 
 import Button from "techbikers/components/Button";
+
+const Form = styled.form`
+  margin-bottom: 26px;
+`;
 
 const MailchimpForm = () => (
   <section id="mailchimp" style={{ background: "#4494c7", padding: 15, marginTop: 40, borderRadius: 10, color: "white" }}>
@@ -8,7 +13,7 @@ const MailchimpForm = () => (
       <h1>Learn more about our plans for 2017!</h1>
     </header>
 
-    <form
+    <Form
       action="//techbikers.us7.list-manage.com/subscribe/post?u=b99427a37520d53bd953e6e7c&amp;id=85462469df"
       method="post"
       name="mc-embedded-subscribe-form"
@@ -32,7 +37,7 @@ const MailchimpForm = () => (
       <div>
         <Button type="submit" kind="positive">Subscribe</Button>
       </div>
-    </form>
+    </Form>
   </section>
 )
 
