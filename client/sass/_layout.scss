@@ -4,7 +4,7 @@
  */
 
 * {
-  @include box-sizing(border-box);
+  box-sizing: border-box;
 }
 
 // Basic containers
@@ -16,9 +16,22 @@
 // HAND CRAFTED GRID, MOTHER FUCKERS
 // Now that is quality!
 .row {
-  @include clearfix();
   margin-left: -$gridGutter;
+  *zoom: 1;
 }
+
+.row:before, .row:after {
+  display: table;
+  content: "";
+  // Fixes Opera/contenteditable bug:
+  // http://nicolasgallagher.com/micro-clearfix-hack/#comment-36952
+  line-height: 0;
+}
+
+.row:after {
+  clear: both;
+}
+
 [class*="span"] {
   float: left;
   min-height: 1px;
