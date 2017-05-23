@@ -89,19 +89,19 @@ export default class RidePage extends Component {
             <ConnectedRidersList />
 
             {
-              sponsors.gold ? <Sponsors sponsors={sponsors.gold} label="Gold sponsors" size={100}/> : null
+              sponsors.gold ? <Sponsors sponsors={sponsors.gold} label="Gold sponsors"/> : null
             }
 
             {
-              sponsors.silver ? <Sponsors sponsors={sponsors.silver} label="Silver sponsors" size={80}/> : null
+              sponsors.silver ? <Sponsors sponsors={sponsors.silver} label="Silver sponsors"/> : null
             }
 
             {
-              sponsors.bronze ? <Sponsors sponsors={sponsors.bronze} label="Bronze sponsors" size={50}/> : null
+              sponsors.bronze ? <Sponsors sponsors={sponsors.bronze} label="Bronze sponsors"/> : null
             }
 
             {
-              sponsors.bottle ? <Sponsors sponsors={sponsors.bottle} label="Bottle sponsors" size={30}/> : null
+              sponsors.bottle ? <Sponsors sponsors={sponsors.bottle} label="Bottle sponsors"/> : null
             }
 
             <section id="description">

@@ -19,7 +19,7 @@ const Sponsors = styled.ul`
 
 const Sponsor = styled.li`
   display: flex;
-  align-items: center;
+  align-items: stretch;
 `;
 
 const Logo = styled.a`
@@ -30,7 +30,7 @@ const Logo = styled.a`
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  height: ${props => props.height}px;
+  min-height: 200px;
 
   ${props =>
     `background-image: url(${props.src})`
@@ -43,13 +43,13 @@ const Description = styled.p`
   line-height: 1.4;
 `;
 
-export default ({ sponsors, label, size }) => (
+export default ({ sponsors, label }) => (
   <div>
     <Header>{label}</Header>
     <Sponsors>
       {sponsors.map(sponsor => (
         <Sponsor sponsor={sponsor}>
-          <Logo href={sponsor.website} src={sponsor.logo} height={size}></Logo>
+          <Logo href={sponsor.website} src={sponsor.logo}></Logo>
           <Description>{sponsor.description}</Description>
         </Sponsor>
       ))}
