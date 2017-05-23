@@ -48,7 +48,7 @@ export default ({ sponsors, label }) => (
     <Header>{label}</Header>
     <Sponsors>
       {sponsors.map(sponsor => (
-        <Sponsor sponsor={sponsor}>
+        <Sponsor sponsor={sponsor} key={sponsor.id}>
           <Logo href={sponsor.website} src={sponsor.logo}></Logo>
           <Description>{sponsor.description}</Description>
         </Sponsor>
