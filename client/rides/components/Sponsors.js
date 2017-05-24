@@ -32,10 +32,8 @@ const Logo = styled.a`
   background-position: center;
   min-height: 200px;
 
-  ${props =>
-    `background-image: url(${props.src})`
-  }
-`
+  ${props => `background-image: url(${props.src})`}
+`;
 
 const Description = styled.p`
   margin: 0;
@@ -49,8 +47,13 @@ export default ({ sponsors, label }) => (
     <Sponsors>
       {sponsors.map(sponsor => (
         <Sponsor sponsor={sponsor} key={sponsor.id}>
-          <Logo href={sponsor.website} src={sponsor.logo}></Logo>
-          <Description>{sponsor.description}</Description>
+          <Logo href={sponsor.website} src={sponsor.logo} />
+          <Description>
+            {sponsor.description}
+            {sponsor.website
+              ? <span><br /><a href={sponsor.website}>Find out more</a></span>
+              : null}
+          </Description>
         </Sponsor>
       ))}
     </Sponsors>
