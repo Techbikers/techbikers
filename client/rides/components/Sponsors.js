@@ -29,8 +29,8 @@ const Logo = styled.a`
   flex-shrink: 0;
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: center;
-  min-height: 200px;
+  background-position: center 5px;
+  min-height: 100px;
 
   ${props => `background-image: url(${props.src})`}
 `;
