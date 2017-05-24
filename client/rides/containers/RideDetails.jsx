@@ -104,6 +104,18 @@ export default class RidePage extends Component {
               sponsors.bottle ? <Sponsors sponsors={sponsors.bottle} label="Bottle sponsors"/> : null
             }
 
+            {
+              sponsors.homecoming ? <Sponsors sponsors={sponsors.homecoming} label="Homecoming party sponsors"/> : null
+            }
+
+            {
+              sponsors.inkind ? <Sponsors sponsors={sponsors.inkind} label="In kind sponsors"/> : null
+            }
+
+            {
+              sponsors.kit ? <Sponsors sponsors={sponsors.kit} label="Kit sponsors"/> : null
+            }
+
             <section id="description">
               <div className="content" dangerouslySetInnerHTML={{ __html: ride.descriptionHtml }} />
             </section>
