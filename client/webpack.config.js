@@ -3,8 +3,9 @@ const glob = require("glob");
 const webpack = require("webpack");
 const assignIn = require("lodash").assignIn;
 const webpackPostcssTools = require("webpack-postcss-tools");
-const BundleTracker = require("webpack-bundle-tracker");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 function extsToRegExp(exts) {
   return new RegExp(`\\.(${exts.map(ext => ext.replace(/\./g, "\\.")).join("|")})(\\?.*)?$`);
@@ -47,14 +48,13 @@ function loadersByExtension(obj) {
 }
 
 module.exports = options => {
-  const root = path.join(__dirname, "..", "client");
+  const root = __dirname;
 
   const devtool = options.production ? "source-map" : "inline-source-map";
 
   const entry = {
-    app: ["../client/index.jsx"],
-    sass: ["../client/sass/main.scss"],
-    style: ["../client/css/index.css"],
+    app: ["index.jsx"],
+    sass: ["sass/main.scss"],
     vendor: [
       "react",
       "react-router",
@@ -66,7 +66,7 @@ module.exports = options => {
   };
 
   const hotEntry = [
-    "webpack-dev-server/client?http://localhost:3000",
+    "webpack-dev-server/client?http://localhost:8000",
     "webpack/hot/only-dev-server"
   ];
 
@@ -79,7 +79,8 @@ module.exports = options => {
   const loaders = {
     "js|jsx": {
       loader: "babel",
-      include: root
+      include: root,
+      exclude: [path.join(__dirname, "node_modules")]
     },
     "json": {
       loader: "json-loader"
@@ -99,7 +100,7 @@ module.exports = options => {
 
   const cssLoader = `css?${JSON.stringify(cssModulesConfig)}`;
 
-  const sassLoader = `sass?includePaths[]=${path.resolve(__dirname, "../node_modules/compass-mixins/lib")}`;
+  const sassLoader = `sass?includePaths[]=${path.resolve(__dirname, "node_modules/compass-mixins/lib")}`;
 
   const stylesheetLoaders = {
     "css": [{
@@ -107,7 +108,7 @@ module.exports = options => {
       include: root
     }, {
       loaders: ["style", "css"],
-      include: path.join(__dirname, "..", "node_modules")
+      include: path.join(__dirname, "node_modules")
     }],
     "scss|sass": {
       loaders: ["style", "css", sassLoader],
@@ -151,6 +152,7 @@ module.exports = options => {
     "js|jsx": {
       loader: "eslint",
       include: root,
+      exclude: [path.join(__dirname, "node_modules")],
       options: {
         failOnError: true,
       }
@@ -177,20 +179,23 @@ module.exports = options => {
     ".scss"
   ];
 
-  const publicPath = options.devServer ? "http://localhost:3000/static/bundles/" : "/static/bundles/";
+  const publicPath = options.devServer ? "/" : "/static/bundles/";
 
   const output = {
     path: path.join(__dirname, "..", "public", "bundles"),
     publicPath,
-    filename: "[name]-[hash].js"
+    filename: options.production ? "[name]-[hash].js" : "[name].js"
   };
 
   const plugins = [
-    new BundleTracker({ filename: options.production ? "./webpack-stats-prod.json" : "./webpack-stats.json" }),
     new webpack.DefinePlugin({
       "process.env": {
         "NODE_ENV": JSON.stringify(options.production ? "production" : "development")
       }
+    }),
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, "templates", "index.ejs"),
+      inject: 'body'
     })
   ];
 
@@ -206,6 +211,11 @@ module.exports = options => {
       new webpack.ExtendedAPIPlugin(),
       new webpack.optimize.OccurenceOrderPlugin(),
       new webpack.optimize.DedupePlugin()
+    );
+  } else {
+    plugins.push(
+      new CopyWebpackPlugin([ { from: '../public/img', to: 'static/img' } ]),
+      new CopyWebpackPlugin([ { from: '../public/fonts', to: 'static/fonts' } ])
     );
   }
 
