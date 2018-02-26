@@ -18,10 +18,10 @@
   },
   "betterScripts": {
     "watch": {
-      "command": "webpack-dev-server --inline --hot --history-api-fallback --config config/webpack.dev.config.js --port 3000"
+      "command": "webpack-dev-server --inline --hot --history-api-fallback --config webpack.dev.config.js --port 8000"
     },
     "build": {
-      "command": "webpack --verbose --colors --display-error-details --config config/webpack.prod.config.js",
+      "command": "webpack --verbose --colors --display-error-details --config webpack.prod.config.js",
       "env": {
         "NODE_ENV": "production"
       }
@@ -32,6 +32,7 @@
     "babel-polyfill": "6.13.0",
     "classnames": "2.2.5",
     "compass-mixins": "0.12.10",
+    "html-webpack-plugin": "^2.28.0",
     "http-status": "0.2.3",
     "humps": "2.0.0",
     "intl": "1.2.4",
@@ -75,6 +76,7 @@
     "babel-preset-stage-0": "6.5.0",
     "babel-register": "6.11.6",
     "better-npm-run": "0.0.10",
+    "copy-webpack-plugin": "^4.0.1",
     "core-decorators": "0.12.3",
     "css-loader": "0.23.1",
     "eslint": "3.2.2",
@@ -100,7 +102,6 @@
     "sass-loader": "4.0.0",
     "style-loader": "0.13.1",
     "webpack": "1.14.0",
-    "webpack-bundle-tracker": "0.0.93",
     "webpack-dev-server": "1.14.1",
     "webpack-postcss-tools": "1.1.2"
   }
