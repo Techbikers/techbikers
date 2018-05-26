@@ -9,6 +9,7 @@ import { UserShape } from "techbikers/users/shapes";
 import { FundraiserShape } from "techbikers/fundraisers/shapes";
 
 import Avatar from "techbikers/users/components/Avatar";
+import Button from "techbikers/components/Button";
 
 const mapStateToProps = (state, ownProps) => {
   const { user } = ownProps;
@@ -143,9 +144,9 @@ export default class Fundraiser extends Component {
         </FundraiserDetails>
 
         <SponsorButton>
-          <a href={pageUrl} className="btn btn-green">
+          <Button type="a" kind="positive" href={pageUrl}>
             Sponsor now
-          </a>
+          </Button>
         </SponsorButton>
 
         {user && <FundraiserLink to={`/riders/${user.id}`} />}

@@ -3,21 +3,10 @@ import { connect } from "react-redux";
 import cx from "classnames";
 
 import { closeRideRegistrationModal } from "techbikers/rides/actions/ui";
+import Button from "techbikers/components/Button";
 
 const mapDispatchToProps = {
-  handleOnClick: closeRideRegistrationModal
+  onClick: closeRideRegistrationModal
 };
 
-const CloseRideRegistrationModalButton = ({ handleOnClick, className, text }) => (
-  <button className={cx("btn", className)} onClick={() => handleOnClick()}>
-    {text}
-  </button>
-);
-
-CloseRideRegistrationModalButton.propTypes = {
-  handleOnClick: PropTypes.func.isRequired,
-  className: PropTypes.string,
-  text: PropTypes.string
-};
-
-export default connect(null, mapDispatchToProps)(CloseRideRegistrationModalButton);
+export default connect(null, mapDispatchToProps)(Button);

@@ -15,6 +15,7 @@ import { RideShape, RegistrationShape } from "techbikers/rides/shapes";
 import { UserShape } from "techbikers/users/shapes";
 import { FundraiserShape } from "techbikers/fundraisers/shapes";
 
+import Button from "techbikers/components/Button";
 import RideRegistrationModal from "techbikers/rides/components/RideRegistrationModal";
 import RegistrationSteps from "techbikers/rides/components/RegistrationSteps";
 import SetupFundraising from "techbikers/fundraisers/containers/SetupFundraising";
@@ -192,7 +193,7 @@ export default class RideRegistration extends Component {
               and pay the registration fee before your invite expires.
             </p>
           </RideRegistrationDetails>
-          <a className="btn btn-green btn-full" onClick={() => this.props.handleOpenModal()}>Complete Registration</a>
+          <Button full kind="positive" onClick={() => this.props.handleOpenModal()}>Complete Registration</Button>
         </div>
       </RegistrationPopdown>
     );
@@ -217,7 +218,7 @@ export default class RideRegistration extends Component {
   renderStartRegistration() {
     return (
       <RegistrationContainer>
-        <a className="btn btn-green btn-full" onClick={() => this.props.handleOpenModal()}>Sign up for the ride!</a>
+        <Button full kind="positive" onClick={() => this.props.handleOpenModal()}>Sign up for the ride!</Button>
       </RegistrationContainer>
     );
   }

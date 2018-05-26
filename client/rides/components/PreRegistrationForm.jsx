@@ -1,11 +1,13 @@
 import React, { Component, PropTypes } from "react";
 import { FormattedNumber } from "react-intl";
 import forms, { Form } from "newforms";
+import styled from "styled-components";
 
 import { RideShape } from "techbikers/rides/shapes";
 
 import FormField from "techbikers/components/FormField";
 import RegistrationSteps from "techbikers/rides/components/RegistrationSteps";
+import Button from "techbikers/components/Button";
 
 const DetailsForm = Form.extend({
   statement: forms.CharField({
@@ -22,6 +24,10 @@ const DetailsForm = Form.extend({
     choices: [[1, "Beginner"], [2, "Confident"], [3, "Intermediate"], [4, "Advanced"], [5, "Lycra Goddess/God"]]
   })
 });
+
+const FormElement = styled.form`
+  margin-bottom: 26px;
+`;
 
 export default class RideRegistrationForm extends Component {
   static propTypes = {
@@ -66,7 +72,7 @@ export default class RideRegistrationForm extends Component {
             cost to secure your spot. You can of course contribute more so more money is left for Room to Read!
           </p>
         </div>
-        <form onSubmit={this.handleRegistration}>
+        <FormElement onSubmit={this.handleRegistration}>
           <div className="row centerText">
             <div className="span6">
               <FormField field={fields.statement} />
@@ -79,11 +85,11 @@ export default class RideRegistrationForm extends Component {
             </div>
           </div>
           <div className="payment-form--submit" style={{ textAlign: "center" }}>
-            <button className="btn btn-blue" type="submit">
+            <Button type="submit">
               {`Apply for ${ride.name}`}
-            </button>
+            </Button>
           </div>
-        </form>
+        </FormElement>
       </div>
     );
   }

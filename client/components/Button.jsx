@@ -1,6 +1,7 @@
-import React, { PropTypes } from "react";
+import React, { PropTypes, createElement as e } from "react";
 import styled from "styled-components";
 import { shade } from "polished";
+import { Link } from "react-router";
 
 import Spinner from "techbikers/components/Spinner";
 import {
@@ -26,11 +27,11 @@ const kindToColor = kind => {
   } else if (kind === "destructive") return errorColor;
 };
 
-const StyledButton = styled.button`
+const StyledButton = styled(({ tag, children, ...props }) =>
+  e(tag, props, children))`
   position: relative;
   display: inline-block;
   padding: 0;
-  margin: 15px 30px;
   color: inherit;
   border: none;
   border-radius: 3px;
@@ -38,9 +39,9 @@ const StyledButton = styled.button`
   font-family: inherit;
   font-size: inherit;
   font-weight: 500;
-  text-align: center;
   letter-spacing: 1px;
   transition: all 0.2s;
+  -webkit-appearance: none;
 
   &,
   &:hover,
@@ -48,6 +49,7 @@ const StyledButton = styled.button`
   &:focus {
     outline: none;
     color: #FFFFFF;
+    text-decoration: none;
   }
 
   &:disabled {
@@ -68,7 +70,7 @@ const StyledButton = styled.button`
     padding: 0;
   }
 
-  ${props => props.block ? `
+  ${props => props.full ? `
     width: 100%;
   ` : ""}
 
@@ -93,6 +95,7 @@ StyledButton.propTypes = {
 const Contents = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 16px 40px;
 
   ${props => props.loading ? `
@@ -102,6 +105,16 @@ const Contents = styled.div`
 
 Contents.propTypes = {
   loading: PropTypes.bool
+};
+
+const typeToTag = type => {
+  if (type === "link") {
+    return Link;
+  } else if (type === "a") {
+    return "a";
+  } else {
+    return "button";
+  }
 };
 
 const Button = (
@@ -114,21 +127,20 @@ const Button = (
     children,
     ...props
   }
-) => {
-  return (
-    <StyledButton
-      disabled={loading || disabled}
-      block={block}
-      type={type}
-      kind={kind}
-      {...props}
-    >
-      <Contents loading={loading}>
-        {loading ? <Spinner light noMargin size={32} /> : children}
-      </Contents>
-    </StyledButton>
-  );
-};
+) => (
+  <StyledButton
+    disabled={loading || disabled}
+    block={block}
+    type={type === "link" || type === "a" ? null : type}
+    kind={kind}
+    tag={typeToTag(type)}
+    {...props}
+  >
+    <Contents loading={loading}>
+      {loading ? <Spinner light noMargin size={32} /> : children}
+    </Contents>
+  </StyledButton>
+);
 
 Button.propTypes = {
   disabled: PropTypes.bool,
@@ -136,6 +148,8 @@ Button.propTypes = {
   type: PropTypes.string,
   kind: PropTypes.oneOf(buttonsKinds),
   block: PropTypes.bool,
+  href: PropTypes.string,
+  to: PropTypes.string,
   children: PropTypes.node
 };
 

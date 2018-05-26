@@ -54,7 +54,6 @@ module.exports = options => {
   const entry = {
     app: ["../client/index.jsx"],
     sass: ["../client/sass/main.scss"],
-    style: ["../client/css/index.css"],
     vendor: [
       "react",
       "react-router",

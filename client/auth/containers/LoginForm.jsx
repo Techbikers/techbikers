@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
 import forms, { Form } from "newforms";
 import { Link, locationShape } from "react-router";
+import styled from "styled-components";
 
 import { getLocation } from "techbikers/app/selectors";
 import { authenticateUser } from "techbikers/auth/actions";
@@ -24,6 +25,10 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   login: authenticateUser
 };
+
+const FormElement = styled.form`
+  margin-bottom: 26px;
+`;
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class LoginForm extends Component {
@@ -58,7 +63,7 @@ export default class LoginForm extends Component {
     const fields = this.state.form.boundFieldsObj();
 
     return (
-      <form id="loginform" role="form" onSubmit={this.handleLogin}>
+      <FormElement role="form" onSubmit={this.handleLogin}>
         <div className="row">
           {Object.keys(fields).map(key =>
             <FormField key={fields[key].htmlName} field={fields[key]} className="span2 offset2" />
@@ -74,7 +79,7 @@ export default class LoginForm extends Component {
             <Link to={{ pathname: "/password/reset", state: { ...location.state } }}>Forgotten your password?</Link>
           </div>
         </div>
-      </form>
+      </FormElement>
     );
   }
 }

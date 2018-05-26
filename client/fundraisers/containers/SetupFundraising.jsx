@@ -7,6 +7,7 @@ import { FundraiserShape } from "techbikers/fundraisers/shapes";
 import { CREATE_FUNDRAISER } from "techbikers/fundraisers/actions";
 import { getFundraiserForCurrentRideAndUser } from "techbikers/fundraisers/selectors";
 
+import Button from "techbikers/components/Button";
 import SocialAuthButton from "techbikers/auth/containers/SocialAuthButton";
 
 const mapStateToProps = state => {
@@ -26,9 +27,9 @@ const mapStateToProps = state => {
 const SetupFundraising = ({ fundraiser, callbackAction }) => {
   if (fundraiser) {
     return (
-      <a className="btn btn-blue" href={fundraiser.pageUrl}>
+      <Button type="a" href={fundraiser.pageUrl}>
         Go to my fundraising page
-      </a>
+      </Button>
     );
   } else {
     return (

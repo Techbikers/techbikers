@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link, locationShape } from "react-router";
 import forms, { Form } from "newforms";
 import { slice } from "lodash";
+import styled from "styled-components";
 
 import { getLocation } from "techbikers/app/selectors";
 import { signup } from "techbikers/auth/actions";
@@ -50,6 +51,10 @@ const mapDispatchToProps = {
   signup
 };
 
+const FormElement = styled.form`
+  margin-bottom: 26px;
+`;
+
 @connect(mapStateToProps, mapDispatchToProps)
 export default class SignupForm extends Component {
   static propTypes = {
@@ -89,7 +94,7 @@ export default class SignupForm extends Component {
     });
 
     return (
-      <form onSubmit={this.handleSignup}>
+      <FormElement onSubmit={this.handleSignup}>
         <div className="row">
           <div className="span2 offset1">
             {slice(fieldComponents, 0, 4)}
@@ -109,7 +114,7 @@ export default class SignupForm extends Component {
             Sign Up
           </Button>
         </p>
-      </form>
+      </FormElement>
     );
   }
 }
