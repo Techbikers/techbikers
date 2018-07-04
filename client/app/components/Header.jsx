@@ -67,7 +67,7 @@ const Header = () => (
           Charity
         </NavLink>
 
-        <BlogLink href="http://blog.techbikers.com/">
+        <BlogLink href="https://medium.com/@techbikers">
           Blog
         </BlogLink>
       </Section>
