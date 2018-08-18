@@ -22,7 +22,7 @@ class Membership(models.Model):
 
     def save(self, *args, **kwargs):
         self.end_date = datetime.now().date() + timedelta(days=365)
-        super().save(*args, **kwargs)
+        super(Membership, self).save(*args, **kwargs)
 
     class Meta:
         db_table = 'memberships'

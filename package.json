@@ -13,7 +13,16 @@
   },
   "scripts": {
     "start": "better-npm-run watch",
+    "start-server": "python manage.py runserver 8000 --settings=server.settings.local",
     "build": "better-npm-run build",
+
+    "test-live-api": "npx dredd docs/swagger.yaml https://techbikers.com/",
+    "test-local-api": "npx dredd docs/swagger.yaml http://localhost:8000/",
+
+    "create-db": "python manage.py migrate --settings=server.settings.local",
+    "populate-db": "python manage.py createdummydata --settings=server.settings.local",
+    "create-admin": "python manage.py createsuperuser --settings=server.settings.local",
+
     "lint": "eslint client"
   },
   "betterScripts": {
@@ -32,6 +41,7 @@
     "babel-polyfill": "6.13.0",
     "classnames": "2.2.5",
     "compass-mixins": "0.12.10",
+    "dredd": "^5.1.8",
     "http-status": "0.2.3",
     "humps": "2.0.0",
     "intl": "1.2.4",

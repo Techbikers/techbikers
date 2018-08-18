@@ -1,0 +1,540 @@
+---
+swagger: "2.0"
+info:
+  description: "https://github.com/Techbikers/techbikers"
+  version: "1.0.0"
+  title: "Techbikers API"
+  contact: {}
+  license:
+    name: "MIT"
+host: "techbikers.com"
+basePath: "/api"
+schemes:
+- "https"
+consumes:
+- "application/json"
+produces:
+- "application/json"
+paths:
+  /auth/account:
+    get:
+      summary: "Account details"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+    x-restlet:
+      section: "Authentication"
+  /auth/verify:
+    get:
+      summary: "Verify account"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+    x-restlet:
+      section: "Authentication"
+  /chapters/:
+    get:
+      summary: "Chapter list"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+    x-restlet:
+      section: "Chapters"
+  /chapters/{chapterId}:
+    get:
+      summary: "Chapter details"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+    parameters:
+    - name: "chapterId"
+      in: "path"
+      required: true
+      type: "string"
+      x-example: "1"
+    x-restlet:
+      section: "Chapters"
+  /chapters/{chapterId}/members:
+    get:
+      summary: "Chapter members"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+    parameters:
+    - name: "chapterId"
+      in: "path"
+      required: true
+      type: "string"
+      x-example: "1"
+    x-restlet:
+      section: "Chapters"
+  /fundraisers/:
+    get:
+      summary: "Fundraiser list"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+    x-restlet:
+      section: "Fundraisers"
+  /rides/:
+    get:
+      summary: "Ride list"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+    x-restlet:
+      section: "Rides"
+  /rides/{rideId}:
+    get:
+      summary: "Ride details"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+    parameters:
+    - name: "rideId"
+      in: "path"
+      required: true
+      type: "string"
+      x-example: "6"
+    x-restlet:
+      section: "Rides"
+  /rides/{rideId}/riders:
+    get:
+      summary: "Ride riders list"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+    post:
+      summary: "Register ride rider"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+      security:
+      - Auth0: []
+    parameters:
+    - name: "rideId"
+      in: "path"
+      required: true
+      type: "string"
+      x-example: "6"
+    x-restlet:
+      section: "Rides"
+  /rides/{rideId}/riders/{riderId}:
+    get:
+      summary: "Ride rider details"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+      security:
+      - Auth0: []
+    parameters:
+    - name: "rideId"
+      in: "path"
+      required: true
+      type: "string"
+      x-example: "18"
+    - name: "riderId"
+      in: "path"
+      required: true
+      type: "string"
+      x-example: "2"
+    x-restlet:
+      section: "Rides"
+  /rides/{rideId}/riders/{riderId}/charge:
+    put:
+      summary: "Charge ride rider"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+      security:
+      - Auth0: []
+    parameters:
+    - name: "rideId"
+      in: "path"
+      required: true
+      type: "string"
+      x-example: "18"
+    - name: "riderId"
+      in: "path"
+      required: true
+      type: "string"
+      x-example: "2"
+    x-restlet:
+      section: "Rides"
+  /rides/{rideId}/riders/{riderId}/fundraiser:
+    post:
+      summary: "Set up fundraising page for ride rider"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+      security:
+      - Auth0: []
+    parameters:
+    - name: "rideId"
+      in: "path"
+      required: true
+      type: "string"
+      x-example: "18"
+    - name: "riderId"
+      in: "path"
+      required: true
+      type: "string"
+      x-example: "2"
+    x-restlet:
+      section: "Rides"
+  /riders/:
+    get:
+      summary: "Rider list"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+    x-restlet:
+      section: "Riders"
+  /riders/{riderId}:
+    get:
+      summary: "Rider details"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+    parameters:
+    - name: "riderId"
+      in: "path"
+      required: true
+      type: "string"
+      x-example: "2"
+    x-restlet:
+      section: "Riders"
+  /riders/{riderId}/rides:
+    get:
+      summary: "Rider rides"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+    parameters:
+    - name: "riderId"
+      in: "path"
+      required: true
+      type: "string"
+      x-example: "2"
+    x-restlet:
+      section: "Riders"
+  /sponsors/:
+    get:
+      summary: "Sponsor list"
+      parameters:
+      - name: "rides"
+        in: "query"
+        required: false
+        type: "integer"
+        x-example: 8
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Sponsor"
+          examples:
+            application/json: "\n[{\"id\":6,\"organisation\":\"Seedrs\",\"description\"\
+              :\"Seedrs make it simple to buy into the businesses you believe in and\
+              \ share in their success. They let all types of growth-focused businesses\
+              \ raise capital and business community in the process. They do all of\
+              \ this through a simple, highly professional, online process that protects\
+              \ and empowers investors while helping businesses grow and generate\
+              \ returns.\\r\\n\\r\\nThey are equity crowdfunding done properly.\"\
+              ,\"logo\":\"https://techbikers.com/media/sponsor_logos/1463501609.jpg\"\
+              ,\"website\":\"https://www.seedrs.com/\",\"twitter\":\"https://twitter.com/Seedrs\"\
+              ,\"facebook\":\"https://facebook.com/Seedrs\",\"rides\":[{\"sponsor\"\
+              :6,\"ride\":8,\"sponsor_level\":\"gold\"}]},{\"id\":7,\"organisation\"\
+              :\"Quantcast\",\"description\":\"Quantcast have built one of the world’\
+              s most sophisticated data-intelligence platforms, using big data and\
+              \ machine learning to solve the biggest challenges in marketing and\
+              \ create more rewarding experiences across the digital landscape. Publishers\
+              \ and Marketers use their insights to better understand audiences and\
+              \ how content resonates with consumers they want to attract and retain.\"\
+              ,\"logo\":\"https://techbikers.com/media/sponsor_logos/1463501835.jpg\"\
+              ,\"website\":\"https://www.quantcast.com\",\"twitter\":\"https://twitter.com/Quantcast\"\
+              ,\"facebook\":\"https://facebook.com/Quantcast\",\"rides\":[{\"sponsor\"\
+              :7,\"ride\":8,\"sponsor_level\":\"silver\"}]},{\"id\":8,\"organisation\"\
+              :\"La Fosse Associates\",\"description\":\"La Fosse Associates specialises\
+              \ in recruiting technology, digital and change talent from top to bottom.\\\
+              r\\n\\r\\nWe were founded on a shared ownership model, with 40% of our\
+              \ equity gifted to all employees over time. This helps create a highly\
+              \ motivated team who work seamlessly across a number of disciplines.\\\
+              r\\n\\r\\nWe have been one of the 100 fastest growing companies in the\
+              \ U.K. for three years in a row (The Sunday Times Virgin Fast Track)\
+              \ and have been voted in the top 20 Sunday Times Best Companies to Work\
+              \ for in the UK for the last five years in a row.\\r\\n\\r\\nWe operate\
+              \ at all levels from the board down, on a permanent, contract, interim\
+              \ and executive search basis.\",\"logo\":\"https://techbikers.com/media/sponsor_logos/1495576173.png\"\
+              ,\"website\":\"http://www.lafosse.com/\",\"twitter\":\"https://twitter.com/_LaFosse\"\
+              ,\"facebook\":\"https://facebook.com/LaFosseAssociates\",\"rides\":[{\"\
+              sponsor\":8,\"ride\":8,\"sponsor_level\":\"bottle\"},{\"sponsor\":8,\"\
+              ride\":15,\"sponsor_level\":\"bottle\"}]}]"
+    x-restlet:
+      section: "Sponsors"
+  /sponsors/{sponsorId}:
+    get:
+      summary: "Sponsor details"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            type: "object"
+          examples:
+            application/json: "\n{\"id\":6,\"organisation\":\"Seedrs\",\"description\"\
+              :\"Seedrs make it simple to buy into the businesses you believe in and\
+              \ share in their success. They let all types of growth-focused businesses\
+              \ raise capital and business community in the process. They do all of\
+              \ this through a simple, highly professional, online process that protects\
+              \ and empowers investors while helping businesses grow and generate\
+              \ returns.\\r\\n\\r\\nThey are equity crowdfunding done properly.\"\
+              ,\"logo\":\"https://techbikers.com/media/sponsor_logos/1463501609.jpg\"\
+              ,\"website\":\"https://www.seedrs.com/\",\"twitter\":\"https://twitter.com/Seedrs\"\
+              ,\"facebook\":\"https://facebook.com/Seedrs\",\"rides\":[{\"sponsor\"\
+              :6,\"ride\":8,\"sponsor_level\":\"gold\"}]}"
+    parameters:
+    - name: "sponsorId"
+      in: "path"
+      required: true
+      type: "string"
+      x-example: "6"
+    x-restlet:
+      section: "Sponsors"
+securityDefinitions:
+  Auth0:
+    type: "oauth2"
+    authorizationUrl: ""
+    tokenUrl: ""
+    flow: "accessCode"
+    scopes: {}
+definitions:
+  Chapter:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      name:
+        type: "string"
+      description:
+        type: "string"
+      public_key:
+        type: "string"
+      membership_fee:
+        type: "number"
+      currency:
+        type: "string"
+      rides:
+        type: "array"
+        items:
+          type: "integer"
+    example: "\n{\"id\":1,\"name\":\"London\",\"description\":\"\",\"public_key\"\
+      :\"pk_live_izsId7GPdTyYckkZN6bqD2A3\",\"membership_fee\":0.0,\"currency\":\"\
+      gbp\",\"rides\":[18,15,11,8,7,6,5,3,1,4]}"
+    x-restlet:
+      section: "Chapters"
+  Fundraiser:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      user:
+        type: "integer"
+      ride:
+        type: "integer"
+      pageId:
+        type: "integer"
+      pageUrl:
+        type: "string"
+      signOnUrl:
+        type: "string"
+      pageStatus:
+        type: "boolean"
+      currency:
+        type: "string"
+      fundraisingTarget:
+        type: "number"
+      totalRaisedOffline:
+        type: "number"
+      totalRaisedOnline:
+        type: "number"
+      totalRaisedSms:
+        type: "number"
+      totalRaised:
+        type: "number"
+      giftAid:
+        type: "number"
+    example: "{\"id\":276,\"user\":179,\"ride\":17,\"pageId\":10944446,\"pageUrl\"\
+      :\"https://www.justgiving.com/ezerider\",\"signOnUrl\":null,\"pageStatus\":true,\"\
+      currency\":\"GBP\",\"fundraisingTarget\":1000.0,\"totalRaisedOffline\":0.0,\"\
+      totalRaisedOnline\":1270.73,\"totalRaisedSms\":0.0,\"totalRaised\":1270.73,\"\
+      giftAid\":140.7}"
+    x-restlet:
+      section: "Fundraisers"
+  Ride:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      name:
+        type: "string"
+      slug:
+        type: "string"
+      strapline:
+        type: "string"
+      description_html:
+        type: "string"
+      start_location:
+        type: "string"
+      end_location:
+        type: "string"
+      start_date:
+        type: "string"
+      end_date:
+        type: "string"
+      chapter:
+        $ref: "#/definitions/Chapter"
+      rider_capacity:
+        type: "integer"
+      riders:
+        type: "array"
+        items:
+          type: "integer"
+      spaces_left:
+        type: "integer"
+      price:
+        type: "number"
+      full_cost:
+        type: "number"
+      currency:
+        type: "string"
+      is_over:
+        type: "boolean"
+      fundraising_total:
+        type: "number"
+      fundraising_target:
+        type: "number"
+    example: "\n{\"id\":18,\"name\":\"Paris to London 2018\",\"slug\":\"paris-to-london-2018\"\
+      ,\"strapline\":\"On June 29th, 60+ techies will ride from Paris to London. Over\
+      \ the 3 day, 200 mile ride they will raise $75000+ for Room to Read.\",\"description_html\"\
+      :\"<p>description</p>\",\"start_location\":\"Paris\",\"end_location\":\"London\"\
+      ,\"start_date\":\"2018-06-29\",\"end_date\":\"2018-07-01\",\"chapter\":{\"id\"\
+      :1,\"name\":\"London\",\"description\":\"\",\"public_key\":\"pk_live_izsId7GPdTyYckkZN6bqD2A3\"\
+      ,\"membership_fee\":0.0,\"currency\":\"gbp\",\"rides\":[18,15,11,8,7,6,5,3,1,4]},\"\
+      rider_capacity\":60,\"riders\":[907,911,923,2,924,721,926,63,928,442,905,934,933,935,940,688,946,956,288,966,955,992],\"\
+      spaces_left\":38,\"price\":325.0,\"full_cost\":560.0,\"currency\":\"gbp\",\"\
+      is_over\":false,\"fundraising_total\":0,\"fundraising_target\":500.0}"
+    x-restlet:
+      section: "Rides"
+  Rider:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      name:
+        type: "string"
+      first_name:
+        type: "string"
+      last_name:
+        type: "string"
+      avatar:
+        type: "string"
+      company:
+        type: "string"
+      website:
+        type: "string"
+      twitter:
+        type: "string"
+      biography:
+        type: "string"
+      statement:
+        type: "string"
+      donation_page:
+        type: "string"
+      is_member:
+        type: "boolean"
+      rides:
+        type: "array"
+        items:
+          type: "integer"
+      fundraisers:
+        type: "array"
+        items:
+          $ref: "#/definitions/Fundraiser"
+    example: "{\"id\":26,\"name\":\"Kate Jackson\",\"first_name\":\"Kate\",\"last_name\"\
+      :\"Jackson\",\"avatar\":\"https://www.gravatar.com/avatar/038359985d3b36761ec5542f60faae82\"\
+      ,\"company\":\"TableCrowd\",\"website\":\"www.tablecrowd.com\",\"twitter\":\"\
+      katejacksonk\",\"biography\":\"Co founder of TableCrowd & SilkFred. Founder\
+      \ of EIS-SEIS.com\",\"statement\":\"\",\"donation_page\":\"http://www.justgiving.com/techbikers-paris-to-london-2016-26\"\
+      ,\"is_member\":false,\"rides\":[1,3,6,8],\"fundraisers\":[{\"id\":47,\"user\"\
+      :26,\"ride\":6,\"pageId\":7710834,\"pageUrl\":\"https://www.justgiving.com/bite-me\"\
+      ,\"signOnUrl\":null,\"pageStatus\":false,\"currency\":\"GBP\",\"fundraisingTarget\"\
+      :500.0,\"totalRaisedOffline\":0.0,\"totalRaisedOnline\":688.09,\"totalRaisedSms\"\
+      :0.0,\"totalRaised\":688.09,\"giftAid\":143.75},{\"id\":118,\"user\":26,\"ride\"\
+      :8,\"pageId\":8942807,\"pageUrl\":\"http://www.justgiving.com/techbikers-paris-to-london-2016-26\"\
+      ,\"signOnUrl\":\"https://www.justgiving.com/auth/3773e6d9-9487-4bbf-94a0-9680d8cf4b13\"\
+      ,\"pageStatus\":false,\"currency\":\"GBP\",\"fundraisingTarget\":500.0,\"totalRaisedOffline\"\
+      :0.0,\"totalRaisedOnline\":450.0,\"totalRaisedSms\":0.0,\"totalRaised\":450.0,\"\
+      giftAid\":105.0}]}"
+    x-restlet:
+      section: "Riders"
+  Sponsor:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      organisation:
+        type: "string"
+      description:
+        type: "string"
+      logo:
+        type: "string"
+      website:
+        type: "string"
+      twitter:
+        type: "string"
+      facebook:
+        type: "string"
+      rides:
+        type: "array"
+        items:
+          type: "object"
+          properties:
+            sponsor:
+              type: "integer"
+            ride:
+              type: "integer"
+            sponsor_level:
+              type: "string"
+    example: "\n{\"id\":6,\"organisation\":\"Seedrs\",\"description\":\"Sponsor description.\"\
+      ,\"logo\":\"https://techbikers.com/media/sponsor_logos/1463501609.jpg\",\"website\"\
+      :\"https://www.seedrs.com/\",\"twitter\":\"https://twitter.com/Seedrs\",\"facebook\"\
+      :\"https://facebook.com/Seedrs\",\"rides\":[{\"sponsor\":6,\"ride\":8,\"sponsor_level\"\
+      :\"gold\"}]}"
+    x-restlet:
+      section: "Sponsors"
+x-restlet:
+  sections:
+    Authentication: {}
+    Chapters: {}
+    Fundraisers: {}
+    Rides: {}
+    Riders: {}
+    Sponsors: {}

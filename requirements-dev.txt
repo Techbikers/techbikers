@@ -1,2 +1,3 @@
 # requirements-dev.txt
 fabric==1.11.1
+faker==0.8.15
